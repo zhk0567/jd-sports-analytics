@@ -1,0 +1,55 @@
+:root {
+  --bg0: #eef1f4;
+  --bg1: #e3e8ee;
+  --ink: #0e1116;
+  --ink-soft: #5a6270;
+  --line: rgba(14, 17, 22, 0.1);
+  --line-strong: rgba(14, 17, 22, 0.18);
+  --paper: rgba(255, 255, 255, 0.55);
+  --paper-solid: #f7f8fa;
+
+  --red: #d92b32;
+  --red-deep: #a81f26;
+  --slate: #1c2430;
+  --mist: #6a849c;
+  --green: #2a5f4a;
+  --gold: #b08a4a;
+
+  --accent: var(--red);
+  --act-accent: var(--red);
+  --act-wash: rgba(217, 43, 50, 0.09);
+
+  /* Editorial premium: serif display + quiet modern sans for numbers */
+  --font-display: "Instrument Serif", "Noto Serif SC", Georgia, serif;
+  --font-num: "Manrope", "Noto Sans SC", sans-serif;
+  --font-body: "Noto Sans SC", "Segoe UI", sans-serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-act="0"],
+html[data-act="2"],
+html[data-act="5"],
+[data-act="0"],
+[data-act="2"],
+[data-act="5"] {
+  --act-accent: var(--red);
+  --act-wash: rgba(217, 43, 50, 0.1);
+}
+
+html[data-act="1"],
+[data-act="1"] {
+  --act-accent: var(--slate);
+  --act-wash: rgba(28, 36, 48, 0.08);
+}
+
+html[data-act="3"],
+[data-act="3"] {
+  --act-accent: var(--mist);
+  --act-wash: rgba(106, 132, 156, 0.14);
+}
+
+html[data-act="4"],
+[data-act="4"] {
+  --act-accent: var(--green);
+  --act-wash: rgba(42, 95, 74, 0.12);
+}

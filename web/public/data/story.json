@@ -1,0 +1,1616 @@
+{
+  "generated_at": "2026-10-12T01:44:17.367332+00:00",
+  "project": "jd-sports-analytics",
+  "thesis": {
+    "open": "京东运动货架上，鞋类约占 36%，中位价落在 ¥208。",
+    "scale": "体量先定坐标系：品类切分决定后面所有比较的权重。",
+    "brands": "品牌争夺可见度时，李宁等名字反复出现在列表页。",
+    "price": "贵与多并不等同——均价被高端尾部拉高，中位价更能代表日常成交带。",
+    "scene": "场景需求清晰：跑步等场景切开鞋服与装备的不同组合。",
+    "shelf": "最后落到具体 SKU：价格、品牌、场景与店铺同时可见。",
+    "close": "运动消费不是一张平面饼图，而是价格、品牌与场景叠出的层次。"
+  },
+  "insights": {
+    "open": [
+      "样本共 88,781 个 SKU，覆盖约 26 个品牌、10563 家店铺。",
+      "自营占比约 36%，评论总量约 635,875,300。",
+      "中位价 ¥208，均价 ¥878——均值明显高于中位，说明存在高价尾部。",
+      "头部品类「鞋类」约占 36%，构成货架主视觉。",
+      "价格跨度：P25 ¥98 → P90 ¥1180，日常带与溢价带并存。"
+    ],
+    "scale": [
+      "品类结构中，鞋类领先（约 36%）。",
+      "已知品牌识别率约 53%，其余多为长尾/标题未命中品牌。",
+      "价格四分位：P25 ¥98 · P50 ¥208 · P75 ¥499 · P90 ¥1180。",
+      "性别倾向：男约 30% / 女约 15%（含中性与未知）。",
+      "Treemap 面积 = 话语权：后续品牌/价格比较都以此为底图权重。"
+    ],
+    "brands": [
+      "去未知品牌后，李宁以 4973 个 SKU 居首。",
+      "Top5 已知品牌合计约占已知品牌货架的 43%。",
+      "上架密度高 ≠ 均价高：规模品牌与溢价品牌往往落在不同象限。",
+      "店铺侧头部集中：Top 店铺贡献显著可见度（见右侧榜单）。",
+      "品牌×品类热力图：可看出谁在鞋服/装备上押注更深。"
+    ],
+    "price": [
+      "主流成交带集中在 60–200 与 200–400 元附近。",
+      "均价 ¥878 高于中位 ¥208，高端带拉高了算术平均。",
+      "≥900 元价位约占 30%，数量少但塑造“贵”的感知。",
+      "四分位跨度 ¥98–¥499，日常成交落在这一带。",
+      "气泡图横轴均价、纵轴上架数：可同时读出规模与定价姿态。"
+    ],
+    "scene": [
+      "场景「跑步」约占 31%（不含“其他”时更高）。",
+      "跑步偏鞋类、健身偏装备——流向比口号更接近真实需求。",
+      "性别结构仍以男性倾向更高（约 30%），女性约 15%。",
+      "场景×品类矩阵可用来找“缺货/过密”的交叉格子。",
+      "场景标签是需求侧切面：同一品类在不同场景下密度差很大。"
+    ],
+    "shelf": [
+      "货架特写优先展示有图、已知品牌、运动品类的样本。",
+      "点进商品可回看京东详情页，适合做竞品与定价对照。",
+      "当前导出 48 个代表 SKU，覆盖多品牌与多价位。",
+      "右侧列表补充更多 SKU：品牌、场景、店铺可对照阅读。",
+      "收束：把体量、品牌、价格、场景压回一件具体商品。"
+    ]
+  },
+  "overview": {
+    "product_count": 88781,
+    "brand_count": 26,
+    "shop_count": 10563,
+    "price_mean": 878.3042559781936,
+    "price_median": 208.0,
+    "comment_sum": 635875300,
+    "self_operated_rate": 0.36253252385082396,
+    "known_brand_rate": 0.5329999999999999,
+    "price_p25": 97.96,
+    "price_p75": 499.0,
+    "price_p90": 1180.34,
+    "premium_share": 0.302
+  },
+  "by_brand": [
+    {
+      "brand": "李宁",
+      "count": 4973,
+      "price_mean": 250.4,
+      "price_median": 198.9,
+      "comment_sum": 57036000
+    },
+    {
+      "brand": "安踏",
+      "count": 4505,
+      "price_mean": 302.6,
+      "price_median": 239.0,
+      "comment_sum": 24009100
+    },
+    {
+      "brand": "Nike",
+      "count": 3848,
+      "price_mean": 613.5,
+      "price_median": 549.0,
+      "comment_sum": 6952200
+    },
+    {
+      "brand": "Adidas",
+      "count": 3630,
+      "price_mean": 615.9,
+      "price_median": 445.5,
+      "comment_sum": 7714600
+    },
+    {
+      "brand": "361°",
+      "count": 3423,
+      "price_mean": 180.6,
+      "price_median": 149.0,
+      "comment_sum": 23834200
+    },
+    {
+      "brand": "乔丹",
+      "count": 2851,
+      "price_mean": 223.9,
+      "price_median": 176.0,
+      "comment_sum": 7988400
+    },
+    {
+      "brand": "匹克",
+      "count": 2730,
+      "price_mean": 210.2,
+      "price_median": 139.0,
+      "comment_sum": 11587200
+    },
+    {
+      "brand": "迪卡侬",
+      "count": 2678,
+      "price_mean": 241.4,
+      "price_median": 99.9,
+      "comment_sum": 10192100
+    },
+    {
+      "brand": "回力",
+      "count": 2590,
+      "price_mean": 111.9,
+      "price_median": 100.0,
+      "comment_sum": 18229600
+    },
+    {
+      "brand": "亚瑟士",
+      "count": 2490,
+      "price_mean": 779.4,
+      "price_median": 646.0,
+      "comment_sum": 3708100
+    },
+    {
+      "brand": "特步",
+      "count": 2460,
+      "price_mean": 226.4,
+      "price_median": 159.9,
+      "comment_sum": 17101500
+    },
+    {
+      "brand": "鸿星尔克",
+      "count": 2394,
+      "price_mean": 200.6,
+      "price_median": 176.0,
+      "comment_sum": 5576400
+    },
+    {
+      "brand": "Keep",
+      "count": 2311,
+      "price_mean": 148.3,
+      "price_median": 84.9,
+      "comment_sum": 10542200
+    },
+    {
+      "brand": "安德玛",
+      "count": 2169,
+      "price_mean": 1660.1,
+      "price_median": 388.0,
+      "comment_sum": 3266200
+    },
+    {
+      "brand": "斯凯奇",
+      "count": 963,
+      "price_mean": 460.9,
+      "price_median": 479.0,
+      "comment_sum": 2800800
+    }
+  ],
+  "by_category": [
+    {
+      "category_guess": "footwear",
+      "count": 31496,
+      "label": "鞋类",
+      "share": 35.5
+    },
+    {
+      "category_guess": "equipment",
+      "count": 22354,
+      "label": "装备",
+      "share": 25.2
+    },
+    {
+      "category_guess": "apparel",
+      "count": 19782,
+      "label": "服饰",
+      "share": 22.3
+    },
+    {
+      "category_guess": "other",
+      "count": 13172,
+      "label": "其他",
+      "share": 14.8
+    },
+    {
+      "category_guess": "nutrition",
+      "count": 1977,
+      "label": "营养",
+      "share": 2.2
+    }
+  ],
+  "by_price_band": [
+    {
+      "price_band": "0-60",
+      "count": 14388
+    },
+    {
+      "price_band": "60-200",
+      "count": 29684
+    },
+    {
+      "price_band": "200-400",
+      "count": 17862
+    },
+    {
+      "price_band": "400-900",
+      "count": 15647
+    },
+    {
+      "price_band": "900-4000",
+      "count": 8387
+    },
+    {
+      "price_band": "4000+",
+      "count": 2813
+    }
+  ],
+  "by_scene": [
+    {
+      "sport_scene": "跑步",
+      "count": 27288
+    },
+    {
+      "sport_scene": "其他",
+      "count": 16245
+    },
+    {
+      "sport_scene": "健身",
+      "count": 13473
+    },
+    {
+      "sport_scene": "户外",
+      "count": 11439
+    },
+    {
+      "sport_scene": "篮球",
+      "count": 5012
+    },
+    {
+      "sport_scene": "瑜伽",
+      "count": 4211
+    },
+    {
+      "sport_scene": "羽毛球",
+      "count": 2698
+    },
+    {
+      "sport_scene": "足球",
+      "count": 2194
+    },
+    {
+      "sport_scene": "乒乓球",
+      "count": 2174
+    },
+    {
+      "sport_scene": "网球",
+      "count": 2155
+    },
+    {
+      "sport_scene": "游泳",
+      "count": 1892
+    }
+  ],
+  "by_gender": [
+    {
+      "gender_guess": "男",
+      "count": 27037
+    },
+    {
+      "gender_guess": "未知",
+      "count": 22991
+    },
+    {
+      "gender_guess": "女",
+      "count": 13637
+    },
+    {
+      "gender_guess": "童",
+      "count": 13137
+    },
+    {
+      "gender_guess": "中性",
+      "count": 11979
+    }
+  ],
+  "brand_category": [
+    {
+      "brand": "361°",
+      "category_label": "其他",
+      "count": 132
+    },
+    {
+      "brand": "361°",
+      "category_label": "服饰",
+      "count": 295
+    },
+    {
+      "brand": "361°",
+      "category_label": "营养",
+      "count": 7
+    },
+    {
+      "brand": "361°",
+      "category_label": "装备",
+      "count": 446
+    },
+    {
+      "brand": "361°",
+      "category_label": "鞋类",
+      "count": 2543
+    },
+    {
+      "brand": "Adidas",
+      "category_label": "其他",
+      "count": 73
+    },
+    {
+      "brand": "Adidas",
+      "category_label": "服饰",
+      "count": 509
+    },
+    {
+      "brand": "Adidas",
+      "category_label": "营养",
+      "count": 2
+    },
+    {
+      "brand": "Adidas",
+      "category_label": "装备",
+      "count": 146
+    },
+    {
+      "brand": "Adidas",
+      "category_label": "鞋类",
+      "count": 2900
+    },
+    {
+      "brand": "Nike",
+      "category_label": "其他",
+      "count": 38
+    },
+    {
+      "brand": "Nike",
+      "category_label": "服饰",
+      "count": 314
+    },
+    {
+      "brand": "Nike",
+      "category_label": "装备",
+      "count": 87
+    },
+    {
+      "brand": "Nike",
+      "category_label": "鞋类",
+      "count": 3409
+    },
+    {
+      "brand": "乔丹",
+      "category_label": "其他",
+      "count": 19
+    },
+    {
+      "brand": "乔丹",
+      "category_label": "服饰",
+      "count": 588
+    },
+    {
+      "brand": "乔丹",
+      "category_label": "装备",
+      "count": 62
+    },
+    {
+      "brand": "乔丹",
+      "category_label": "鞋类",
+      "count": 2182
+    },
+    {
+      "brand": "亚瑟士",
+      "category_label": "其他",
+      "count": 7
+    },
+    {
+      "brand": "亚瑟士",
+      "category_label": "服饰",
+      "count": 78
+    },
+    {
+      "brand": "亚瑟士",
+      "category_label": "装备",
+      "count": 1
+    },
+    {
+      "brand": "亚瑟士",
+      "category_label": "鞋类",
+      "count": 2404
+    },
+    {
+      "brand": "匹克",
+      "category_label": "其他",
+      "count": 344
+    },
+    {
+      "brand": "匹克",
+      "category_label": "服饰",
+      "count": 778
+    },
+    {
+      "brand": "匹克",
+      "category_label": "营养",
+      "count": 2
+    },
+    {
+      "brand": "匹克",
+      "category_label": "装备",
+      "count": 358
+    },
+    {
+      "brand": "匹克",
+      "category_label": "鞋类",
+      "count": 1248
+    },
+    {
+      "brand": "回力",
+      "category_label": "其他",
+      "count": 30
+    },
+    {
+      "brand": "回力",
+      "category_label": "服饰",
+      "count": 463
+    },
+    {
+      "brand": "回力",
+      "category_label": "装备",
+      "count": 20
+    },
+    {
+      "brand": "回力",
+      "category_label": "鞋类",
+      "count": 2077
+    },
+    {
+      "brand": "安踏",
+      "category_label": "其他",
+      "count": 148
+    },
+    {
+      "brand": "安踏",
+      "category_label": "服饰",
+      "count": 1123
+    },
+    {
+      "brand": "安踏",
+      "category_label": "营养",
+      "count": 1
+    },
+    {
+      "brand": "安踏",
+      "category_label": "装备",
+      "count": 580
+    },
+    {
+      "brand": "安踏",
+      "category_label": "鞋类",
+      "count": 2653
+    },
+    {
+      "brand": "未知品牌",
+      "category_label": "其他",
+      "count": 9930
+    },
+    {
+      "brand": "未知品牌",
+      "category_label": "服饰",
+      "count": 8448
+    },
+    {
+      "brand": "未知品牌",
+      "category_label": "营养",
+      "count": 1877
+    },
+    {
+      "brand": "未知品牌",
+      "category_label": "装备",
+      "count": 17550
+    },
+    {
+      "brand": "未知品牌",
+      "category_label": "鞋类",
+      "count": 3685
+    },
+    {
+      "brand": "李宁",
+      "category_label": "其他",
+      "count": 418
+    },
+    {
+      "brand": "李宁",
+      "category_label": "服饰",
+      "count": 1388
+    },
+    {
+      "brand": "李宁",
+      "category_label": "营养",
+      "count": 12
+    },
+    {
+      "brand": "李宁",
+      "category_label": "装备",
+      "count": 886
+    },
+    {
+      "brand": "李宁",
+      "category_label": "鞋类",
+      "count": 2269
+    },
+    {
+      "brand": "特步",
+      "category_label": "其他",
+      "count": 127
+    },
+    {
+      "brand": "特步",
+      "category_label": "服饰",
+      "count": 577
+    },
+    {
+      "brand": "特步",
+      "category_label": "装备",
+      "count": 199
+    },
+    {
+      "brand": "特步",
+      "category_label": "鞋类",
+      "count": 1557
+    },
+    {
+      "brand": "迪卡侬",
+      "category_label": "其他",
+      "count": 620
+    },
+    {
+      "brand": "迪卡侬",
+      "category_label": "服饰",
+      "count": 1128
+    },
+    {
+      "brand": "迪卡侬",
+      "category_label": "营养",
+      "count": 6
+    },
+    {
+      "brand": "迪卡侬",
+      "category_label": "装备",
+      "count": 555
+    },
+    {
+      "brand": "迪卡侬",
+      "category_label": "鞋类",
+      "count": 369
+    }
+  ],
+  "brand_price_scatter": [
+    {
+      "brand": "361°",
+      "count": 3423,
+      "price_mean": 180.64191936897458,
+      "comment_sum": 23834200
+    },
+    {
+      "brand": "Adidas",
+      "count": 3630,
+      "price_mean": 615.8731845730028,
+      "comment_sum": 7714600
+    },
+    {
+      "brand": "Keep",
+      "count": 2311,
+      "price_mean": 148.33701860666378,
+      "comment_sum": 10542200
+    },
+    {
+      "brand": "Nike",
+      "count": 3848,
+      "price_mean": 613.4577936590437,
+      "comment_sum": 6952200
+    },
+    {
+      "brand": "乔丹",
+      "count": 2851,
+      "price_mean": 223.87458786390738,
+      "comment_sum": 7988400
+    },
+    {
+      "brand": "亚瑟士",
+      "count": 2490,
+      "price_mean": 779.3615943775101,
+      "comment_sum": 3708100
+    },
+    {
+      "brand": "匹克",
+      "count": 2730,
+      "price_mean": 210.20894505494508,
+      "comment_sum": 11587200
+    },
+    {
+      "brand": "回力",
+      "count": 2590,
+      "price_mean": 111.85464092664094,
+      "comment_sum": 18229600
+    },
+    {
+      "brand": "安德玛",
+      "count": 2169,
+      "price_mean": 1660.1310742277547,
+      "comment_sum": 3266200
+    },
+    {
+      "brand": "安踏",
+      "count": 4505,
+      "price_mean": 302.59683018867923,
+      "comment_sum": 24009100
+    },
+    {
+      "brand": "彪马",
+      "count": 649,
+      "price_mean": 572.4341910631741,
+      "comment_sum": 461600
+    },
+    {
+      "brand": "斯凯奇",
+      "count": 963,
+      "price_mean": 460.9439044652129,
+      "comment_sum": 2800800
+    },
+    {
+      "brand": "未知品牌",
+      "count": 41490,
+      "price_mean": 1399.079866714871,
+      "comment_sum": 414993700
+    },
+    {
+      "brand": "李宁",
+      "count": 4973,
+      "price_mean": 250.41963603458677,
+      "comment_sum": 57036000
+    },
+    {
+      "brand": "特步",
+      "count": 2460,
+      "price_mean": 226.44544715447157,
+      "comment_sum": 17101500
+    },
+    {
+      "brand": "迪卡侬",
+      "count": 2678,
+      "price_mean": 241.3630134428678,
+      "comment_sum": 10192100
+    },
+    {
+      "brand": "骆驼",
+      "count": 780,
+      "price_mean": 423.7399871794872,
+      "comment_sum": 6669700
+    },
+    {
+      "brand": "鸿星尔克",
+      "count": 2394,
+      "price_mean": 200.55571010860484,
+      "comment_sum": 5576400
+    }
+  ],
+  "scene_category": [
+    {
+      "sport_scene": "乒乓球",
+      "category_label": "其他",
+      "count": 936
+    },
+    {
+      "sport_scene": "乒乓球",
+      "category_label": "服饰",
+      "count": 34
+    },
+    {
+      "sport_scene": "乒乓球",
+      "category_label": "装备",
+      "count": 1141
+    },
+    {
+      "sport_scene": "乒乓球",
+      "category_label": "鞋类",
+      "count": 63
+    },
+    {
+      "sport_scene": "健身",
+      "category_label": "其他",
+      "count": 2468
+    },
+    {
+      "sport_scene": "健身",
+      "category_label": "服饰",
+      "count": 922
+    },
+    {
+      "sport_scene": "健身",
+      "category_label": "营养",
+      "count": 1924
+    },
+    {
+      "sport_scene": "健身",
+      "category_label": "装备",
+      "count": 7528
+    },
+    {
+      "sport_scene": "健身",
+      "category_label": "鞋类",
+      "count": 631
+    },
+    {
+      "sport_scene": "其他",
+      "category_label": "其他",
+      "count": 802
+    },
+    {
+      "sport_scene": "其他",
+      "category_label": "服饰",
+      "count": 6625
+    },
+    {
+      "sport_scene": "其他",
+      "category_label": "营养",
+      "count": 4
+    },
+    {
+      "sport_scene": "其他",
+      "category_label": "装备",
+      "count": 1033
+    },
+    {
+      "sport_scene": "其他",
+      "category_label": "鞋类",
+      "count": 7781
+    },
+    {
+      "sport_scene": "户外",
+      "category_label": "其他",
+      "count": 3263
+    },
+    {
+      "sport_scene": "户外",
+      "category_label": "服饰",
+      "count": 5787
+    },
+    {
+      "sport_scene": "户外",
+      "category_label": "装备",
+      "count": 969
+    },
+    {
+      "sport_scene": "户外",
+      "category_label": "鞋类",
+      "count": 1420
+    },
+    {
+      "sport_scene": "游泳",
+      "category_label": "其他",
+      "count": 708
+    },
+    {
+      "sport_scene": "游泳",
+      "category_label": "服饰",
+      "count": 772
+    },
+    {
+      "sport_scene": "游泳",
+      "category_label": "装备",
+      "count": 361
+    },
+    {
+      "sport_scene": "游泳",
+      "category_label": "鞋类",
+      "count": 51
+    },
+    {
+      "sport_scene": "瑜伽",
+      "category_label": "其他",
+      "count": 687
+    },
+    {
+      "sport_scene": "瑜伽",
+      "category_label": "服饰",
+      "count": 881
+    },
+    {
+      "sport_scene": "瑜伽",
+      "category_label": "营养",
+      "count": 29
+    },
+    {
+      "sport_scene": "瑜伽",
+      "category_label": "装备",
+      "count": 2567
+    },
+    {
+      "sport_scene": "瑜伽",
+      "category_label": "鞋类",
+      "count": 47
+    },
+    {
+      "sport_scene": "篮球",
+      "category_label": "其他",
+      "count": 22
+    },
+    {
+      "sport_scene": "篮球",
+      "category_label": "装备",
+      "count": 2111
+    },
+    {
+      "sport_scene": "篮球",
+      "category_label": "鞋类",
+      "count": 2879
+    },
+    {
+      "sport_scene": "网球",
+      "category_label": "其他",
+      "count": 879
+    },
+    {
+      "sport_scene": "网球",
+      "category_label": "服饰",
+      "count": 70
+    },
+    {
+      "sport_scene": "网球",
+      "category_label": "装备",
+      "count": 942
+    },
+    {
+      "sport_scene": "网球",
+      "category_label": "鞋类",
+      "count": 264
+    },
+    {
+      "sport_scene": "羽毛球",
+      "category_label": "其他",
+      "count": 1980
+    },
+    {
+      "sport_scene": "羽毛球",
+      "category_label": "服饰",
+      "count": 89
+    },
+    {
+      "sport_scene": "羽毛球",
+      "category_label": "装备",
+      "count": 194
+    },
+    {
+      "sport_scene": "羽毛球",
+      "category_label": "鞋类",
+      "count": 435
+    },
+    {
+      "sport_scene": "足球",
+      "category_label": "其他",
+      "count": 19
+    },
+    {
+      "sport_scene": "足球",
+      "category_label": "服饰",
+      "count": 2
+    },
+    {
+      "sport_scene": "足球",
+      "category_label": "装备",
+      "count": 1913
+    },
+    {
+      "sport_scene": "足球",
+      "category_label": "鞋类",
+      "count": 260
+    },
+    {
+      "sport_scene": "跑步",
+      "category_label": "其他",
+      "count": 1408
+    },
+    {
+      "sport_scene": "跑步",
+      "category_label": "服饰",
+      "count": 4600
+    },
+    {
+      "sport_scene": "跑步",
+      "category_label": "营养",
+      "count": 20
+    },
+    {
+      "sport_scene": "跑步",
+      "category_label": "装备",
+      "count": 3595
+    },
+    {
+      "sport_scene": "跑步",
+      "category_label": "鞋类",
+      "count": 17665
+    }
+  ],
+  "top_shops": [
+    {
+      "shop_name": "京喜自营官方店",
+      "count": 5268
+    },
+    {
+      "shop_name": "迪卡侬京东自营旗舰店",
+      "count": 1508
+    },
+    {
+      "shop_name": "耐克（NIKE）京东自营旗舰店",
+      "count": 1234
+    },
+    {
+      "shop_name": "Adidas运动京东自营旗舰店",
+      "count": 994
+    },
+    {
+      "shop_name": "迪卡侬官方旗舰店",
+      "count": 992
+    },
+    {
+      "shop_name": "ASICS官方旗舰店",
+      "count": 849
+    },
+    {
+      "shop_name": "安踏京东自营旗舰店",
+      "count": 625
+    },
+    {
+      "shop_name": "TOPSPORTS官方旗舰店",
+      "count": 604
+    },
+    {
+      "shop_name": "安踏官方旗舰店",
+      "count": 530
+    },
+    {
+      "shop_name": "李宁京东自营旗舰店",
+      "count": 523
+    },
+    {
+      "shop_name": "李宁运动鞋服京东自营专区",
+      "count": 513
+    },
+    {
+      "shop_name": "滔搏运动官方旗舰店",
+      "count": 508
+    },
+    {
+      "shop_name": "Keep京东自营旗舰店",
+      "count": 477
+    },
+    {
+      "shop_name": "NIKE官方旗舰店",
+      "count": 450
+    },
+    {
+      "shop_name": "乔丹官方旗舰店",
+      "count": 423
+    }
+  ],
+  "shelf_products": [
+    {
+      "sku_id": "100251351281",
+      "title": "李宁（LI-NING）篮球6号女子CBA比赛室内外兼用训练比赛防滑耐磨PU标准女生六号",
+      "brand": "李宁",
+      "price": 99.0,
+      "category_guess": "equipment",
+      "sport_scene": "篮球",
+      "gender_guess": "女",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/504706/20/3186/259083/6a7e9ea9Fac1f345d/0083320320aa9178.png",
+      "product_url": "https://item.jd.com/100251351281.html",
+      "shop_name": "李宁（LINING）球类京东自营专卖店",
+      "comment_count": 2000000
+    },
+    {
+      "sku_id": "100251358563",
+      "title": "李宁（LI-NING）篮球7号彩标CBA室内外防滑耐磨赛事成人青少年比赛专用蓝球091-1",
+      "brand": "李宁",
+      "price": 129.0,
+      "category_guess": "equipment",
+      "sport_scene": "篮球",
+      "gender_guess": "未知",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/449666/40/1872/2701457/6a1f9c14Fd2751053/00834e64e6ebff03.png",
+      "product_url": "https://item.jd.com/100251358563.html",
+      "shop_name": "李宁（LINING）球类京东自营专卖店",
+      "comment_count": 2000000
+    },
+    {
+      "sku_id": "100019962427",
+      "title": "李宁（LI-NING）ELITE比赛训练篮球室内7号超纤PU材质篮球 LBQK877-3",
+      "brand": "李宁",
+      "price": 289.0,
+      "category_guess": "equipment",
+      "sport_scene": "篮球",
+      "gender_guess": "未知",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/298237/4/20063/193148/68634f6bF67d682f0/a53d078c6dbeb8ac.jpg",
+      "product_url": "https://item.jd.com/100019962427.html",
+      "shop_name": "李宁（LINING）球类京东自营专卖店",
+      "comment_count": 2000000
+    },
+    {
+      "sku_id": "100251343135",
+      "title": "李宁（LI-NING）篮球7号超纤室内外兼用防滑赛事标准成人青少年比赛专用蓝球081-1",
+      "brand": "李宁",
+      "price": 299.0,
+      "category_guess": "equipment",
+      "sport_scene": "篮球",
+      "gender_guess": "未知",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/442850/40/19605/364449/6a2691c1Ff54e10ec/0083320320300f74.png",
+      "product_url": "https://item.jd.com/100251343135.html",
+      "shop_name": "李宁（LINING）球类京东自营专卖店",
+      "comment_count": 2000000
+    },
+    {
+      "sku_id": "1104317073",
+      "title": "华亚（HUAYA） 哑铃男士杠铃套装可调节环保包胶手铃亚玲家用运动锻炼健身器材 总重10kg基础款【青少年】【连接20cm】",
+      "brand": "安德玛",
+      "price": 38.0,
+      "category_guess": "equipment",
+      "sport_scene": "健身",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/194005/38/19532/344907/61234265Eebfb1ce5/60483ff99d6147c2.jpg",
+      "product_url": "https://item.jd.com/1104317073.html",
+      "shop_name": "华亚运动旗舰店",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100157115295",
+      "title": "李宁篮球成人7号初中小学生青少年中考专用室内室外防滑训练七号蓝球",
+      "brand": "李宁",
+      "price": 64.9,
+      "category_guess": "equipment",
+      "sport_scene": "篮球",
+      "gender_guess": "未知",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/493474/38/905/249645/6a670841Ffd32321d/00833203201d208b.jpg",
+      "product_url": "https://item.jd.com/100157115295.html",
+      "shop_name": "李宁体育京东自营专区",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100298086740",
+      "title": "李宁篮球成年人专用7号初中生12-18岁室外青少年训练专业比赛七号礼物",
+      "brand": "李宁",
+      "price": 99.0,
+      "category_guess": "equipment",
+      "sport_scene": "篮球",
+      "gender_guess": "未知",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/373893/9/7217/172833/6937d2c7F27a9c198/58841cd150ce7dc2.jpg",
+      "product_url": "https://item.jd.com/100298086740.html",
+      "shop_name": "李宁体育京东自营专区",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100010560687",
+      "title": "361°运动鞋男鞋秋季透气网面舒适轻便通勤鞋男士黑色百搭休闲跑步鞋子",
+      "brand": "361°",
+      "price": 119.0,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/546546/6/462/68043/6acba65fF19a6926e/00833203205f30e6.jpg",
+      "product_url": "https://item.jd.com/100010560687.html",
+      "shop_name": "361度京东自营旗舰店",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100019039124",
+      "title": "361°运动鞋男鞋秋季透气网面舒适轻便通勤鞋男士白色百搭休闲跑步鞋子",
+      "brand": "361°",
+      "price": 119.0,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/498418/18/7699/48663/6a7e86eaF42e0a0eb/0083320320698591.jpg",
+      "product_url": "https://item.jd.com/100019039124.html",
+      "shop_name": "361度京东自营旗舰店",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100253816807",
+      "title": "361°运动鞋男鞋秋季透气网面舒适轻便通勤鞋男士白色百搭休闲跑步鞋子",
+      "brand": "361°",
+      "price": 119.0,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/486031/22/18123/119426/6a7e8745F18a23268/00833203208a960a.jpg",
+      "product_url": "https://item.jd.com/100253816807.html",
+      "shop_name": "361度京东自营旗舰店",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "8452201",
+      "title": "361°运动鞋男鞋秋季透气网面舒适轻便通勤鞋男士黑色百搭休闲跑步鞋子",
+      "brand": "361°",
+      "price": 119.0,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/486223/3/17067/49860/6a7e86e6Fa11254f8/0083320320b60054.jpg",
+      "product_url": "https://item.jd.com/8452201.html",
+      "shop_name": "361度京东自营旗舰店",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100391690304",
+      "title": "361°运动鞋男鞋秋季防泼水革面轻便软弹通勤鞋男士百搭休闲跑步鞋子",
+      "brand": "361°",
+      "price": 129.0,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/483418/23/9462/153553/6a6728a7F5529cba9/0083320320ae62bd.jpg",
+      "product_url": "https://item.jd.com/100391690304.html",
+      "shop_name": "361度京东自营旗舰店",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100416279892",
+      "title": "李宁篮球3号儿童初中生成年人6-12-18岁通用室外专业加重辅助训练球",
+      "brand": "李宁",
+      "price": 129.0,
+      "category_guess": "equipment",
+      "sport_scene": "篮球",
+      "gender_guess": "童",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/522811/15/5562/231830/6aa74740F8834526e/008332032052c24f.jpg",
+      "product_url": "https://item.jd.com/100416279892.html",
+      "shop_name": "李宁体育京东自营专区",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100310294143",
+      "title": "361°运动鞋男冬季加毛保暖轻便软底减震男士跑步鞋休闲鞋672642226B-2",
+      "brand": "361°",
+      "price": 138.99,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/542349/38/3446/190748/6ac889fcFf213cf09/008332032055853f.jpg",
+      "product_url": "https://item.jd.com/100310294143.html",
+      "shop_name": "361度京东自营旗舰店",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100403110298",
+      "title": "361°运动鞋男冬季加毛保暖轻便软底减震男士跑步鞋休闲鞋672642226B-3",
+      "brand": "361°",
+      "price": 138.99,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/540471/17/5371/98939/6ac88958F8e840e8c/0083320320953018.jpg",
+      "product_url": "https://item.jd.com/100403110298.html",
+      "shop_name": "361度京东自营旗舰店",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100202112551",
+      "title": "李宁4BD篮球D8000成人7号吸湿防滑耐磨标准训练比赛专用学生礼物七号",
+      "brand": "李宁",
+      "price": 159.0,
+      "category_guess": "equipment",
+      "sport_scene": "篮球",
+      "gender_guess": "未知",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/473436/15/4851/453360/6a48cc37F0bcfbc86/0083320320870cb5.jpg",
+      "product_url": "https://item.jd.com/100202112551.html",
+      "shop_name": "李宁体育京东自营专区",
+      "comment_count": 1000000
+    },
+    {
+      "sku_id": "100334060036",
+      "title": "特步（XTEP）跳绳竞速小学生考试6-12岁不打结儿童沙专用式幼儿园中考训练",
+      "brand": "特步",
+      "price": 12.9,
+      "category_guess": "equipment",
+      "sport_scene": "健身",
+      "gender_guess": "童",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/522670/17/1620/114095/6a9e7df2Fbddacb75/00833203200e0e54.jpg",
+      "product_url": "https://item.jd.com/100334060036.html",
+      "shop_name": "特步（XTEP）健身训练京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100120595833",
+      "title": "特步（XTEP）精准计数跳绳成人男女士体育儿童小学生减肥健身训练器材",
+      "brand": "特步",
+      "price": 18.9,
+      "category_guess": "equipment",
+      "sport_scene": "健身",
+      "gender_guess": "童",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/350037/6/2273/487577/68c2bb4aF4c8d3a10/fe679a3b6386be7c.jpg",
+      "product_url": "https://item.jd.com/100120595833.html",
+      "shop_name": "特步（XTEP）健身训练京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100010708567",
+      "title": "【已售100万根+】李宁不打结钢丝跳绳",
+      "brand": "李宁",
+      "price": 19.8,
+      "category_guess": "equipment",
+      "sport_scene": "其他",
+      "gender_guess": "未知",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/375933/19/18360/527492/694a7d01F633a66a3/02583203203250d4.jpg",
+      "product_url": "https://item.jd.com/100010708567.html",
+      "shop_name": "李宁体育用品京东自营专区",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100250351579",
+      "title": "特步（XTEP）跳绳轴承竞速小学生考试6-12岁不打结儿童沙专用式幼儿园中考训练",
+      "brand": "特步",
+      "price": 21.9,
+      "category_guess": "equipment",
+      "sport_scene": "健身",
+      "gender_guess": "童",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/491534/24/11167/99453/6a7d242eFacc40a0e/0083320320bf9d88.jpg",
+      "product_url": "https://item.jd.com/100250351579.html",
+      "shop_name": "特步（XTEP）健身训练京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100022332765",
+      "title": "匹克瑜伽垫男女健身训练运动加减震静隔音防滑垫儿童舞蹈垫厚粉色",
+      "brand": "匹克",
+      "price": 30.9,
+      "category_guess": "equipment",
+      "sport_scene": "瑜伽",
+      "gender_guess": "童",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/67398/33/27299/59874/66ebbe5bFfdc25d68/c731e7d5016e7054.jpg",
+      "product_url": "https://item.jd.com/100022332765.html",
+      "shop_name": "匹克运动京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100375659126",
+      "title": "特步（XTEP）跳绳无绳成人燃脂智能计数减肥负重健身中小学生考试钢丝竞速专用",
+      "brand": "特步",
+      "price": 35.9,
+      "category_guess": "equipment",
+      "sport_scene": "健身",
+      "gender_guess": "未知",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/461474/10/17294/86744/6a433bc2F8eacfccf/00833203207ea290.jpg",
+      "product_url": "https://item.jd.com/100375659126.html",
+      "shop_name": "特步（XTEP）健身训练京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100007986748",
+      "title": "Keep哑铃女士健身家用1kg*2彩色浸塑环保手铃亚铃全身塑形K-rox樱粉",
+      "brand": "Keep",
+      "price": 39.88,
+      "category_guess": "equipment",
+      "sport_scene": "健身",
+      "gender_guess": "女",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/540691/9/2943/76238/6ac4ec5cF83e15789/008332032055f15d.png",
+      "product_url": "https://item.jd.com/100007986748.html",
+      "shop_name": "Keep京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100189041080",
+      "title": "特步（XTEP）跳绳计数中考专用成人男女士体育小学生儿童钢丝绳减肥健身器材黑",
+      "brand": "特步",
+      "price": 39.9,
+      "category_guess": "equipment",
+      "sport_scene": "健身",
+      "gender_guess": "童",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/267496/25/29534/89428/67ca5825Ff1269406/e9852301f54da053.jpg",
+      "product_url": "https://item.jd.com/100189041080.html",
+      "shop_name": "特步（XTEP）健身训练京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "30297209745",
+      "title": "李宁（LI-NING）瑜伽垫男士健身女加厚加宽专业运动跳绳垫训练仰卧起坐隔音减震 183*61*8mm沉稳灰【附绑带】",
+      "brand": "李宁",
+      "price": 44.0,
+      "category_guess": "equipment",
+      "sport_scene": "瑜伽",
+      "gender_guess": "中性",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/389078/23/6004/162982/6972d55cF467a97a7/00835a05a08a5f56.jpg",
+      "product_url": "https://item.jd.com/30297209745.html",
+      "shop_name": "李宁新兴专卖店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100334072720",
+      "title": "特步（XTEP）跳绳计数初中考试专用两段式防滑男女小学生运动减肥健身训练器材",
+      "brand": "特步",
+      "price": 49.9,
+      "category_guess": "equipment",
+      "sport_scene": "健身",
+      "gender_guess": "中性",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/410288/15/19793/128231/69ce0cf2F7a45e19a/00833203206770a5.jpg",
+      "product_url": "https://item.jd.com/100334072720.html",
+      "shop_name": "特步（XTEP）健身训练京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100342165638",
+      "title": "李宁短袖T恤男女运动短袖上衣春夏季薄款打底衫圆领吸汗跑步健身短袖",
+      "brand": "李宁",
+      "price": 59.0,
+      "category_guess": "apparel",
+      "sport_scene": "跑步",
+      "gender_guess": "中性",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/488019/27/1248/2375574/6a5ee18aF1dc6b29c/0083800800038352.jpg",
+      "product_url": "https://item.jd.com/100342165638.html",
+      "shop_name": "李宁运动鞋服京东自营专区",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "66167713175",
+      "title": "李宁（LI-NING）瑜伽垫男士健身女加厚加宽专业运动跳绳垫训练仰卧起坐隔音减震 183*80*10mm沉稳灰【三件套】",
+      "brand": "李宁",
+      "price": 59.0,
+      "category_guess": "equipment",
+      "sport_scene": "瑜伽",
+      "gender_guess": "中性",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/123793/25/20942/111813/61d164aaE9bd56fff/7084bc1106a8c6d0.jpg",
+      "product_url": "https://item.jd.com/66167713175.html",
+      "shop_name": "李宁新兴专卖店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100369340334",
+      "title": "匹克瑜伽垫加厚加宽男女健身训练运动减震静隔音防滑垫儿童舞蹈垫",
+      "brand": "匹克",
+      "price": 59.9,
+      "category_guess": "equipment",
+      "sport_scene": "瑜伽",
+      "gender_guess": "童",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/442538/38/13677/178627/6a266e35F4f30f097/00833203209b6c07.jpg",
+      "product_url": "https://item.jd.com/100369340334.html",
+      "shop_name": "匹克运动京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "46550380267",
+      "title": "回力官方 帆布鞋男女鞋低帮经典休闲款学生情侣运动小白鞋女板鞋子男 经典黑-391 41",
+      "brand": "回力",
+      "price": 65.0,
+      "category_guess": "footwear",
+      "sport_scene": "其他",
+      "gender_guess": "中性",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/166113/35/7584/177218/602f2b32Edc23f583/dc7e4ed30413c995.jpg",
+      "product_url": "https://item.jd.com/46550380267.html",
+      "shop_name": "回力官方旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100234663010",
+      "title": "匹克瑜伽垫双色加宽防滑减震静隔音男女家用专业健身运动舞蹈垫",
+      "brand": "匹克",
+      "price": 65.9,
+      "category_guess": "equipment",
+      "sport_scene": "瑜伽",
+      "gender_guess": "中性",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/501540/6/10450/93980/6a87a700F523c353d/0083320320cd415a.jpg",
+      "product_url": "https://item.jd.com/100234663010.html",
+      "shop_name": "匹克运动京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100093764441",
+      "title": "李宁（LI-NING）智能计数跳绳成人减肥健身中小学生考试竞速专用燃脂绳子",
+      "brand": "李宁",
+      "price": 74.4,
+      "category_guess": "equipment",
+      "sport_scene": "健身",
+      "gender_guess": "未知",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/265137/20/28799/100501/67c8fc06Fef1129d8/44d2ed0fc1c45645.jpg",
+      "product_url": "https://item.jd.com/100093764441.html",
+      "shop_name": "李宁体育用品京东自营专区",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100215960399",
+      "title": "特步情侣男女板鞋小白鞋空军一号秋季革面耐磨百搭运动板鞋休闲鞋",
+      "brand": "特步",
+      "price": 109.0,
+      "category_guess": "footwear",
+      "sport_scene": "其他",
+      "gender_guess": "中性",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/531057/6/14977/92161/6ac99adbFfb73c31d/0083320320aed19f.jpg",
+      "product_url": "https://item.jd.com/100215960399.html",
+      "shop_name": "特步京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "6685631",
+      "title": "特步情侣男女板鞋小白鞋空军一号春秋透气耐磨百搭运动板鞋休闲鞋",
+      "brand": "特步",
+      "price": 109.0,
+      "category_guess": "footwear",
+      "sport_scene": "其他",
+      "gender_guess": "中性",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/531832/37/2570/58583/6ab0a613F86c4ccd8/008332032069d34f.jpg",
+      "product_url": "https://item.jd.com/6685631.html",
+      "shop_name": "特步京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100119096487",
+      "title": "李宁护膝半月板损伤运动关节膝盖滑膜炎韧带积液专用登山篮羽毛球跑步",
+      "brand": "李宁",
+      "price": 119.0,
+      "category_guess": "equipment",
+      "sport_scene": "跑步",
+      "gender_guess": "未知",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/509666/1/6401/184916/6a8d5007Fc8fefe12/0083320320c91a21.jpg",
+      "product_url": "https://item.jd.com/100119096487.html",
+      "shop_name": "李宁体育用品京东自营专区",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "30890079142",
+      "title": "特步男鞋跑步鞋新款秋季厚底旅游透气轻便皮网面休闲运动鞋慢跑鞋子男 黑色 42",
+      "brand": "特步",
+      "price": 119.0,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/155905/19/42914/139761/6613bdafFf71420b1/926507373540ef87.jpg",
+      "product_url": "https://item.jd.com/30890079142.html",
+      "shop_name": "特步运动鞋旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "4232445",
+      "title": "乔丹运动鞋男鞋秋冬季跑步鞋子舒适减震轻便跑鞋男",
+      "brand": "乔丹",
+      "price": 129.99,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/539848/37/7530/115273/6acb6b43Ffcb167b2/0083320320ef6e15.jpg",
+      "product_url": "https://item.jd.com/4232445.html",
+      "shop_name": "乔丹京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "5162416",
+      "title": "乔丹运动鞋男鞋秋冬季跑步鞋子舒适减震轻便跑鞋男",
+      "brand": "乔丹",
+      "price": 129.99,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/532880/6/9865/163533/6acb6b43Fabf7d794/0083320320dbbcc1.jpg",
+      "product_url": "https://item.jd.com/5162416.html",
+      "shop_name": "乔丹京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "5162426",
+      "title": "乔丹运动鞋男鞋秋冬季跑步鞋子舒适减震轻便跑鞋男",
+      "brand": "乔丹",
+      "price": 129.99,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/539848/37/7530/115273/6acb6b43Ffcb167b2/0083320320ef6e15.jpg",
+      "product_url": "https://item.jd.com/5162426.html",
+      "shop_name": "乔丹京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "10120258657629",
+      "title": "361°运动鞋男鞋秋季新品防泼水皮革面跑步鞋轻质耐磨革网透气黑色鞋子 曜石黑/皇冠金【皮革面防泼水】 42",
+      "brand": "361°",
+      "price": 139.99,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/546535/14/472/159004/6acba577F13c5c823/00833203206d3a94.jpg",
+      "product_url": "https://item.jd.com/10120258657629.html",
+      "shop_name": "361度官方旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "10135268193084",
+      "title": "361°运动鞋男鞋秋季新品防泼水皮革面跑步鞋轻质耐磨革网透气黑色鞋子 曜石黑 42",
+      "brand": "361°",
+      "price": 139.99,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/544187/7/3400/116957/6acba58bF63a09f89/0083320320912236.jpg",
+      "product_url": "https://item.jd.com/10135268193084.html",
+      "shop_name": "361度官方旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "10234847630919",
+      "title": "361°运动鞋男鞋秋季新品防泼水皮革面跑步鞋轻质耐磨革网透气黑色鞋子 曜石黑【保暖加绒 抗风防泼水】 42",
+      "brand": "361°",
+      "price": 139.99,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/539674/7/7799/118992/6acba58fF6c1ee8ab/00833203204fce6c.jpg",
+      "product_url": "https://item.jd.com/10234847630919.html",
+      "shop_name": "361度官方旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "1480834762",
+      "title": "361°运动鞋男鞋秋季新品防泼水皮革面跑步鞋轻质耐磨革网透气黑色鞋子 曜石黑【皮革面防泼水】 42",
+      "brand": "361°",
+      "price": 139.99,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/541925/39/5663/92084/6acba5a5Fdb7e267d/0083320320157d38.jpg",
+      "product_url": "https://item.jd.com/1480834762.html",
+      "shop_name": "361度官方旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "2372300",
+      "title": "李宁（LI-NING）泳裤男士泳镜泳帽游泳包套组旅行温泉泳衣时尚游泳装备333黑XL",
+      "brand": "李宁",
+      "price": 149.0,
+      "category_guess": "equipment",
+      "sport_scene": "游泳",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/441933/27/12358/87261/6a228919Ffd3c2ac9/00833203208b8e89.jpg",
+      "product_url": "https://item.jd.com/2372300.html",
+      "shop_name": "李宁游泳京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100239791289",
+      "title": "特步运动鞋男跑步鞋秋冬季轻便减震软底男款跑鞋网面透气休闲鞋子黑色",
+      "brand": "特步",
+      "price": 159.0,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/541963/27/3776/87156/6ac9963eF133ce2a6/0083320320afb393.jpg",
+      "product_url": "https://item.jd.com/100239791289.html",
+      "shop_name": "特步京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100301210795",
+      "title": "特步运动鞋男鞋跑步鞋秋冬季轻便减震软底鞋子男款网面透气跑鞋休闲鞋",
+      "brand": "特步",
+      "price": 159.0,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/498372/33/3287/146698/6a731735F921dae69/008332032057a496.png",
+      "product_url": "https://item.jd.com/100301210795.html",
+      "shop_name": "特步京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "100225064877",
+      "title": "安踏悠步丨运动鞋男鞋网面透气跑步鞋男轻便减震黑色休闲鞋旅游鞋",
+      "brand": "安踏",
+      "price": 169.0,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/532068/25/10921/126595/6ac7bf29Faab4272a/008332032002bdb0.jpg",
+      "product_url": "https://item.jd.com/100225064877.html",
+      "shop_name": "安踏京东自营旗舰店",
+      "comment_count": 500000
+    },
+    {
+      "sku_id": "20901827912",
+      "title": "安踏男鞋运动鞋男秋季男士软底减震网面透气跑步鞋黑色皮面防水鞋男款 【爆款热卖秋季新款男鞋】黑色 41",
+      "brand": "安踏",
+      "price": 169.0,
+      "category_guess": "footwear",
+      "sport_scene": "跑步",
+      "gender_guess": "男",
+      "image_url": "https://img14.360buyimg.com/n1/jfs/t1/226509/30/13402/246493/65cabe47F8bfb4dd3/2b97d4728f5fd935.jpg",
+      "product_url": "https://item.jd.com/20901827912.html",
+      "shop_name": "安踏运动旗舰店",
+      "comment_count": 500000
+    }
+  ]
+}

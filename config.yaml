@@ -1,0 +1,151 @@
+# jd-sports-analytics — crawl & pipeline settings
+
+project_name: jd-sports-analytics
+
+search:
+  keyword: 运动
+  base_url: "https://re.jd.com/search?keyword={keyword}&page={page}"
+  # Scene / category queries to broaden coverage
+  extra_queries:
+    - 跑步
+    - 篮球
+    - 健身
+    - 瑜伽
+    - 游泳
+    - 羽毛球
+    - 足球
+    - 网球
+    - 乒乓球
+    - 户外运动
+    - 运动鞋
+    - 运动服
+    - 运动裤
+    - 运动内衣
+    - 跑步鞋
+    - 篮球鞋
+    - 训练鞋
+    - 跑步机
+    - 椭圆机
+    - 动感单车
+    - 哑铃
+    - 瑜伽垫
+    - 跳绳
+    - 蛋白粉
+    - 男运动鞋
+    - 女运动鞋
+    - 儿童运动鞋
+    - 运动外套
+    - 冲锋衣
+    - 骑行
+    - 滑雪
+    - 登山
+    - 马拉松
+    - 健身房
+    - 力量训练
+  # Cross brand × sport for higher unique coverage
+  sport_facets:
+    - 跑步
+    - 篮球
+    - 健身
+    - 瑜伽
+    - 足球
+    - 羽毛球
+    - 训练
+    - 户外
+
+brands:
+  - 李宁
+  - 安踏
+  - 特步
+  - 361°
+  - 匹克
+  - Nike
+  - Adidas
+  - 迪卡侬
+  - Keep
+  - 安德玛
+  - 亚瑟士
+  - 鸿星尔克
+  - 乔丹
+  - 回力
+  - 斯凯奇
+  - 匡威
+  - 彪马
+  - 美津浓
+  - 北面
+  - 始祖鸟
+  - 哥伦比亚
+  - 探路者
+  - 骆驼
+  - 沃特
+  - 贵人鸟
+
+crawl:
+  # Soft ceiling for unique SKUs (keep under 100k)
+  max_unique: 90000
+  max_raw_rows: 120000
+  max_pages_per_query: 50
+  stop_after_low_pages: 3
+  low_new_threshold: 8
+  include_keyword_only: true
+  include_extra_queries: true
+  include_brands: true
+  include_brand_sport_cross: true
+  # Limit cross combos to first N brands (avoid explosion)
+  brand_sport_brand_limit: 15
+  brand_query_prefix: true
+  # Parallel queries (biggest speed lever). Keep modest to avoid risk pages.
+  workers: 8
+  delay_min_sec: 0.15
+  delay_max_sec: 0.45
+  blocked_backoff_sec: 6
+  timeout_sec: 20
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  log_dir: logs
+
+processing:
+  poll_sec: 30
+  csv_every_n: 5
+  outlier_quantile: 0.99
+  shop_top_n: 50
+  idle_rounds_to_exit: 2
+  aggregates_dir: aggregates
+  checkpoint_file: _checkpoint.json
+
+price_bands:
+  - [0, 60]
+  - [60, 200]
+  - [200, 400]
+  - [400, 900]
+  - [900, 4000]
+  - [4000, null]
+
+# Alias -> canonical brand (title matching)
+brand_aliases:
+  耐克: Nike
+  NIKE: Nike
+  阿迪达斯: Adidas
+  adidas: Adidas
+  ADIDAS: Adidas
+  361度: 361°
+  Under Armour: 安德玛
+  UA: 安德玛
+  ASICS: 亚瑟士
+  Asics: 亚瑟士
+  PUMA: 彪马
+  Puma: 彪马
+  Skechers: 斯凯奇
+  CONVERSE: 匡威
+  Converse: 匡威
+  The North Face: 北面
+  TNF: 北面
+  Arc'teryx: 始祖鸟
+  Columbia: 哥伦比亚
+  LI-NING: 李宁
+  ANTA: 安踏
+  XTEP: 特步
+  PEAK: 匹克
