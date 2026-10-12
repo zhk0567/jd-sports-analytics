@@ -13,7 +13,10 @@ function parseBand(band: string): [number, number] {
     const n = Number(cleaned.replace(/\D/g, "")) || 4000;
     return [n, Infinity];
   }
-  const parts = cleaned.split(/[-–~]/).map((x) => Number(x)).filter((x) => !Number.isNaN(x));
+  const parts = cleaned
+    .split(/[-–~]/)
+    .map((x) => Number(x))
+    .filter((x) => !Number.isNaN(x));
   if (parts.length >= 2) return [parts[0], parts[1]];
   if (parts.length === 1) return [parts[0], parts[0]];
   return [0, Infinity];
@@ -29,67 +32,108 @@ export function ActPrice({ story }: Props) {
   const selectedMeta = bands.find((b) => b.price_band === selectedBand);
   const bandRange = selectedBand ? parseBand(selectedBand) : null;
 
-  const bubbleOption = useMemo(() => {
-    const pts = story.brand_price_scatter.filter((d) => d.brand !== "未知品牌");
+  const ladderOption = useMemo(() => {
+    const pts = [...story.brand_price_scatter]
+      .filter((d) => d.brand !== "未知品牌")
+      .sort((a, b) => a.price_mean - b.price_mean)
+      .slice(0, 14);
+
+    const maxCount = Math.max(...pts.map((d) => d.count), 1);
+
     return {
-      grid: { left: 42, right: 12, top: 16, bottom: 28 },
+      grid: { left: 58, right: 56, top: 8, bottom: 36 },
+      tooltip: {
+        formatter: (p: { name?: string; value?: number[]; dataIndex?: number }) => {
+          const d = pts[p.dataIndex ?? 0];
+          if (!d) return String(p.name || "");
+          return `${d.brand}<br/>均价 ¥${Math.round(d.price_mean)}<br/>SKU ${d.count.toLocaleString()}`;
+        },
+      },
       xAxis: {
-        name: "均价",
-        nameTextStyle: { color: "#5a6270", fontSize: 10 },
-        splitLine: { lineStyle: { color: "rgba(14,17,22,0.07)" } },
-        axisLabel: { color: "#5a6270", fontSize: 10 },
+        type: "value",
+        name: "均价 ¥",
+        nameLocation: "middle",
+        nameGap: 24,
+        nameTextStyle: { color: "#5a6270", fontSize: 11 },
+        min: 0,
+        splitLine: { lineStyle: { color: "rgba(14,17,22,0.06)" } },
+        axisLabel: {
+          color: "#5a6270",
+          fontSize: 10,
+          formatter: (v: number) => `¥${v}`,
+        },
+        axisLine: { show: false },
+        axisTick: { show: false },
       },
       yAxis: {
-        name: "商品数",
-        nameTextStyle: { color: "#5a6270", fontSize: 10 },
-        splitLine: { lineStyle: { color: "rgba(14,17,22,0.07)" } },
-        axisLabel: { color: "#5a6270", fontSize: 10 },
-      },
-      tooltip: {
-        formatter: (p: unknown) => {
-          const item = p as { name?: string; value?: number[] };
-          const v = item.value || [0, 0, 0];
-          return `${item.name}<br/>均价 ¥${Number(v[0]).toFixed(0)}<br/>商品 ${v[1]}`;
+        type: "category",
+        data: pts.map((d) => d.brand),
+        axisLabel: {
+          color: "#0e1116",
+          fontSize: 11,
+          fontWeight: 600,
         },
+        axisLine: { show: false },
+        axisTick: { show: false },
       },
       series: [
         {
-          type: "scatter",
-          symbolSize: (val: number[]) =>
-            Math.max(12, Math.min(44, Math.sqrt(val[2] || 1) / 70)),
+          type: "bar",
+          barWidth: 12,
+          z: 1,
+          silent: true,
           data: pts.map((d) => {
             const inBand =
               !bandRange ||
               (d.price_mean >= bandRange[0] && d.price_mean < bandRange[1]);
             return {
-              name: d.brand,
-              value: [d.price_mean, d.count, d.comment_sum || 1],
+              value: d.price_mean,
               itemStyle: {
                 color: inBand
-                  ? "rgba(106,132,156,0.78)"
-                  : "rgba(106,132,156,0.14)",
-                borderColor: inBand ? "#d92b32" : "rgba(14,17,22,0.12)",
-                borderWidth: inBand ? 1.4 : 0.6,
+                  ? "rgba(106,132,156,0.35)"
+                  : "rgba(106,132,156,0.1)",
+                borderRadius: [0, 5, 5, 0],
               },
             };
           }),
-          animationDuration: 700,
+        },
+        {
+          type: "scatter",
+          z: 3,
+          symbolSize: (_val: number[], params: { dataIndex?: number }) => {
+            const d = pts[params.dataIndex ?? 0];
+            if (!d) return 14;
+            return Math.max(12, Math.min(26, 10 + (20 * d.count) / maxCount));
+          },
+          data: pts.map((d, yi) => {
+            const inBand =
+              !bandRange ||
+              (d.price_mean >= bandRange[0] && d.price_mean < bandRange[1]);
+            return {
+              name: d.brand,
+              value: [d.price_mean, yi],
+              itemStyle: {
+                color: inBand ? "#d92b32" : "rgba(106,132,156,0.35)",
+                borderColor: "#fff",
+                borderWidth: 2.5,
+                shadowBlur: inBand && bandRange ? 6 : 0,
+                shadowColor: "rgba(217,43,50,0.25)",
+              },
+              label: {
+                show: true,
+                position: "right",
+                formatter: `${d.count}`,
+                color: inBand ? "#0e1116" : "#9aa8b5",
+                fontSize: 11,
+                fontWeight: 600,
+                distance: 10,
+              },
+            };
+          }),
         },
       ],
     };
   }, [story.brand_price_scatter, bandRange]);
-
-  const onEvents = useMemo(
-    () => ({
-      click: (params: Record<string, unknown>) => {
-        const name = String(params.name || "");
-        if (!name) return;
-        // clicking a bubble clears band filter and could show brand — keep simple: clear
-        setSelectedBand(null);
-      },
-    }),
-    [],
-  );
 
   return (
     <ActShell
@@ -104,20 +148,20 @@ export function ActPrice({ story }: Props) {
       lead={story.thesis.price}
       close={
         selectedMeta
-          ? `「${selectedBand}」：${selectedMeta.count.toLocaleString()} SKU（${((100 * selectedMeta.count) / Math.max(ov.product_count, 1)).toFixed(1)}%）。气泡只亮均价落在该带的品牌。`
-          : "点击价格带，联动右侧气泡高亮。"
+          ? `「${selectedBand}」：${selectedMeta.count.toLocaleString()} SKU（${((100 * selectedMeta.count) / Math.max(ov.product_count, 1)).toFixed(1)}%）。右侧只亮均价落在该带的品牌。`
+          : "点击价格带，联动右侧品牌均价阶梯。"
       }
       insights={story.insights?.price}
     >
-      <div className="stage-fill">
-        <div className="callout-grid callout-grid-4 tight">
+      <div className="stage-fill price-stage">
+        <div className="callout-grid callout-grid-4 tight price-stats">
           <div className="callout">
             <div className="k">P25</div>
             <div className="v">
               <CountUp value={Math.round(ov.price_p25 ?? 0)} prefix="¥" />
             </div>
           </div>
-          <div className="callout">
+          <div className="callout accent-soft">
             <div className="k">Median</div>
             <div className="v">
               <CountUp value={Math.round(ov.price_median ?? 0)} prefix="¥" />
@@ -150,7 +194,7 @@ export function ActPrice({ story }: Props) {
           </button>
         </div>
 
-        <div className="split-stage flex-grow">
+        <div className="split-stage flex-grow price-split">
           <div className="panel spectrum-panel">
             <div className="panel-head">
               <span className="title">Price spectrum</span>
@@ -162,6 +206,7 @@ export function ActPrice({ story }: Props) {
               {bands.map((d, i) => {
                 const active = selectedBand === d.price_band;
                 const dim = selectedBand != null && !active;
+                const isPremium = i >= bands.length - 2;
                 return (
                   <button
                     type="button"
@@ -184,14 +229,13 @@ export function ActPrice({ story }: Props) {
                         viewport={{ once: true }}
                         transition={{ duration: 0.65, delay: i * 0.04 }}
                         style={{
-                          background:
-                            i >= bands.length - 2
-                              ? "linear-gradient(90deg,#6a849c,#d92b32)"
-                              : "linear-gradient(90deg,#8fa6b8,#6a849c)",
+                          background: isPremium
+                            ? "linear-gradient(90deg,#6a849c,#d92b32)"
+                            : "linear-gradient(90deg,#9aa8b5,#6a849c)",
                         }}
                       />
                     </div>
-                    <div className="n">{d.count}</div>
+                    <div className="n">{d.count.toLocaleString()}</div>
                   </button>
                 );
               })}
@@ -200,14 +244,13 @@ export function ActPrice({ story }: Props) {
 
           <div className="panel chart-fill">
             <div className="panel-head">
-              <span className="title">Price × scale</span>
+              <span className="title">Brand price ladder</span>
               <span className="meta">
-                {selectedBand ? `Filter · ${selectedBand}` : "Bubble"}
+                {selectedBand ? `Filter · ${selectedBand}` : "均价 × SKU"}
               </span>
             </div>
             <ChartFrame
-              option={bubbleOption}
-              onEvents={onEvents}
+              option={ladderOption}
               chartKey={selectedBand || "all"}
             />
           </div>

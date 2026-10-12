@@ -46,18 +46,18 @@
 ### Act 02 · 品牌 — 谁在占货架
 
 <p align="center">
-  <img src="docs/screenshots/act-02-brands.png" alt="品牌榜与热力图" width="920" />
+  <img src="docs/screenshots/act-02-brands.png" alt="品牌 chips 与品类堆叠条" width="920" />
 </p>
 
-品牌赛道榜 + 品牌×品类热力：点击行或热力格锁定品牌。
+顶部品牌 chips + 品牌×品类堆叠条：一眼看构成，点击锁定单一品牌。
 
 ### Act 03 · 价格 — 贵与多并不等同
 
 <p align="center">
-  <img src="docs/screenshots/act-03-price.png" alt="价格分档与气泡图" width="920" />
+  <img src="docs/screenshots/act-03-price.png" alt="价格分档与品牌均价阶梯" width="920" />
 </p>
 
-价格带光谱 + 均价×规模气泡：点选价格带联动高亮。
+价格带光谱 + 品牌均价阶梯：点选价格带，联动均价落点与 SKU 规模。
 
 ### Act 04 · 场景 — 人在什么场买什么
 
@@ -73,7 +73,7 @@
   <img src="docs/screenshots/act-05-shelf.png" alt="货架商品特写" width="920" />
 </p>
 
-代表 SKU 画廊：品牌 / 场景筛选，点卡片看详情并跳转京东。
+多品牌轮询的代表 SKU：方图 + 文案分离，品牌 / 场景筛选，点卡片看详情并跳转京东。
 
 ---
 

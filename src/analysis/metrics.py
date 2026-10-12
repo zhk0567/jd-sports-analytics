@@ -182,6 +182,59 @@ def top_products(df: pd.DataFrame, n: int = 12) -> pd.DataFrame:
     )
 
 
+def shelf_showcase(df: pd.DataFrame, n: int = 48) -> pd.DataFrame:
+    """Pick representative SKUs with brand diversity for the shelf act."""
+    if df.empty:
+        return df
+    ranked = top_products(df, n=min(len(df), max(n * 8, 200))).copy()
+    ranked = ranked[ranked["brand"].fillna("").ne("未知品牌")]
+    if "image_url" in ranked.columns:
+        ranked = ranked[
+            ranked["image_url"].fillna("").astype(str).str.len() > 8
+        ]
+    if ranked.empty:
+        return top_products(df, n=n)
+
+    buckets: dict[str, list] = {}
+    for idx, row in ranked.iterrows():
+        brand = str(row.get("brand") or "未知")
+        buckets.setdefault(brand, []).append(idx)
+
+    def brand_score(b: str) -> float:
+        head = ranked.loc[buckets[b][0]]
+        return float(head.get("comment_count") or 0)
+
+    brand_order = sorted(buckets.keys(), key=brand_score, reverse=True)
+
+    picked: list = []
+    used: set = set()
+    while len(picked) < n and any(buckets[b] for b in brand_order):
+        progressed = False
+        for brand in brand_order:
+            if len(picked) >= n:
+                break
+            while buckets.get(brand):
+                idx = buckets[brand].pop(0)
+                if idx in used:
+                    continue
+                picked.append(idx)
+                used.add(idx)
+                progressed = True
+                break
+        if not progressed:
+            break
+
+    if len(picked) < n:
+        for idx in ranked.index:
+            if idx in used:
+                continue
+            picked.append(idx)
+            if len(picked) >= n:
+                break
+
+    return ranked.loc[picked].reset_index(drop=True)
+
+
 def filter_df(
     df: pd.DataFrame,
     brands: list[str] | None = None,

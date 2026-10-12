@@ -254,7 +254,7 @@ def build_story(df: pd.DataFrame) -> dict:
         "top_shops": _records(
             M.top_shops(df, n=15, by="products").rename(columns={"value": "count"})
         ),
-        "shelf_products": _records(M.top_products(df, n=48)[shelf_cols]),
+        "shelf_products": _records(M.shelf_showcase(df, n=48)[shelf_cols]),
     }
 
 
