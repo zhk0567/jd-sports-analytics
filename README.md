@@ -79,7 +79,7 @@ cd jd-sports-analytics
 git pull
 ```
 
-GitHub 只保存完整内容和协作文档；Gitee 的正式按天提交仓库名是 `t2_ecommerce`。
+GitHub 只保存完整内容和协作文档；Gitee 的正式按天提交仓库是公开仓库 `t2_ecommerce`。本组固定 3 人，按照手册蓝色“3人”标签执行，不设 Coder C。
 
 ## 原始爬虫（保留）
 

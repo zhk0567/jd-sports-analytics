@@ -1,9 +1,13 @@
 # 每日提交顺序（执行版）：组长 → Coder A → Coder B
 
 > Gitee 仓库名：`t2_ecommerce`  
+> 组型：3 人组，只执行蓝色“3人”标签，不设 Coder C  
+> Gitee 可见性：公开（Public）  
 > 分支：只使用 `main`  
 > 适用：第 2 组（运动）电商经营分析平台  
 > 说明：本文只调整提交顺序，不改变任务内容；当前没有提交或推送任何内容。
+>
+> ODS 口径：手册标题写 12 张，但任务清单实际列出 13 张（含 `search_log`）；本项目按 13 张执行。
 
 ---
 
@@ -23,7 +27,7 @@
 
 ## 一、串行规则
 
-每天分成 1~2 轮。每一轮都严格按：
+每天分成 1~3 轮。每一轮都严格按：
 
 ```text
 组长提交并 push
@@ -74,26 +78,27 @@ git log --oneline --author="Coder B 姓名" --since="今天"
 
 | 顺序 | 负责人 | 提交信息 | 本轮文件/内容 |
 |---:|---|---|---|
-| 1 | 组长 | `[INIT] 初始化t2_ecommerce目录与main分支` | `.gitignore`、`README.md`、`requirements.txt`、目录结构；Gitee 仓库改名 `t2_ecommerce`，邀请三人 |
+| 1 | 组长 | `[INIT] 初始化t2_ecommerce目录与main分支` | `.gitignore`、`README.md`、`requirements.txt`、目录结构；Gitee 仓库改名 `t2_ecommerce`，设为公开，邀请三人 |
 | 2 | 组长 | `[DOC] 完成运动品类特征数据分布规范` | `doc/品类特征数据分布规范.md` |
 | 3 | 组长 | `[DOC] 完成ER图与数仓字段字典` | `doc/ER图.png`、`doc/数仓字段字典.md` |
 | 4 | Coder A | `[ODS] 完成13张MySQL/Hive ODS建表SQL` | `sql/ods/`、`sql/init_databases.sql` |
 | 5 | Coder A | `[ENV] 完成环境验证与建库` | `doc/环境验证报告.md` |
-| 6 | Coder A | `[ODS] 完成维度侧数据生成脚本` | `scripts/t2_generate_dim_data.py`；用户 800、分类 40、商品 250、品牌 30、店铺 15 |
-| 7 | Coder B | `[ODS] 完成事实侧数据生成脚本` | `scripts/t2_generate_fact_data.py`；订单、明细、支付、退款、物流、评价、购物车、搜索 |
+| 6 | Coder A | `[ODS] 完成基础5张数据生成脚本` | 5.1 基础：用户 800、分类 40、商品 250、品牌 30、店铺 15 |
+| 7 | Coder B | `[ODS] 完成交易5张+内容3张数据生成脚本` | 5.2 交易：订单、明细、支付、退款、物流；5.3 内容：评价、购物车、搜索 |
 | 8 | Coder B | `[ODS] 完成事实数据自检脚本` | `scripts/t2_check_ods_facts.py`；行数、外键、金额/数量异常检查 |
 
 ### 第 2 轮
 
 | 顺序 | 负责人 | 提交信息 | 本轮文件/内容 |
 |---:|---|---|---|
-| 1 | 组长 | `[ODS] 汇总生成入口并跑通24935行` | `scripts/t2_generate_data.py` 调用 A/B 两个模块；13 张 CSV 合计 24,935 行 |
+| 1 | 组长 | `[ODS] 完成品类特征注入并跑通24935行` | 5.4 品类特征规范 + 特征注入 + `scripts/t2_generate_data.py` 联调冻结；13 张 CSV 合计 24,935 行 |
 | 2 | 组长 | `[DOC] 完成day1过程文档与代码Review` | `doc/process/day1.md`；至少 3 条问题与解决记录 |
 | 3 | Coder A | `[ODS] 修复维度数据分布并复核CSV` | 维度侧分布修正、外键检查、商品属性抽查 |
 | 4 | Coder B | `[ODS] 修复事实数据分布并复核CSV` | 事实侧分布修正、金额/数量/时间逻辑抽查 |
 
 ### Day 1 完成标准
 
+- Gitee `t2_ecommerce` 已设为公开（Public），三人有权限。
 - 13 张 ODS CSV，合计 24,935 行，seed=2。
 - MySQL/Hive 各 13 张 ODS 建表 SQL。
 - 外键无悬空，商品至少有 5 个属性字段。
@@ -222,9 +227,9 @@ git log --oneline --author="Coder B 姓名" --since="今天"
 
 | 顺序 | 负责人 | 提交信息 | 内容 |
 |---:|---|---|---|
-| 1 | 组长 | `[DOC] 答辩流程与演示脚本` | 8 分钟演示顺序、每页讲稿、问答准备 |
-| 2 | Coder A | `[DOC] ADS/API/左半屏讲稿` | 14 张 ADS、20 个 API、左半屏 6 图表 |
-| 3 | Coder B | `[DOC] DWD/DWS/ML/右半屏讲稿` | DWD/DWS、3 个模型、右半屏 6 图表 |
+| 1 | 组长 | `[DOC] 答辩流程与演示脚本` | 2.5 分钟：项目介绍、整体架构、项目管理、总结反思 |
+| 2 | Coder A | `[DOC] ADS/API/左半屏讲稿` | 3 分钟：数仓设计、ER 图、指标体系、代码亮点 |
+| 3 | Coder B | `[DOC] DWD/DWS/ML/右半屏讲稿` | 2.5 分钟：3 个 ML 模型、大屏演示、动效展示 |
 
 ---
 
@@ -251,6 +256,8 @@ t2_ecommerce
 ```
 
 不是 `jd-sports-analytics`，也不是 `t2-sports-analytics`。
+
+Gitee 可见性必须是 **公开（Public）**，外部可无限制访问。
 
 ```text
 https://gitee.com/zhk567/t2_ecommerce
