@@ -65,6 +65,22 @@ data/ods_csv/         13 张 ODS CSV
 - [交叉验证](doc/交叉验证报告.md)
 - [全链路复查](doc/全链路复查报告.md)
 
+## 团队协作（按天重建 Gitee）
+
+- [每日提交顺序：组长 → Coder A → Coder B](doc/每日提交顺序_组长A_B.md)
+- [三人分工与每日提交计划](doc/三人分工与每日提交计划.md)
+- [团队 AI 话术与每日执行指令](doc/团队AI话术与每日执行指令.md)
+
+团队下载：
+
+```powershell
+git clone https://github.com/zhk0567/jd-sports-analytics.git
+cd jd-sports-analytics
+git pull
+```
+
+GitHub 只保存完整内容和协作文档；Gitee 的正式按天提交仓库名是 `t2_ecommerce`。
+
 ## 原始爬虫（保留）
 
 `src/crawler` 与 `web/` 保留了京东运动货架爬虫与六幕叙事页；真实 8.9 万 SKU 切片见 `doc/真实货架洞察.md`，作为运动品类业务背景与数据校验，不参与可复现 ODS 明细生成。
