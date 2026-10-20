@@ -1,0 +1,58 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/refund_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "refund_id",
+              "order_id",
+              "refund_time",
+              "refund_amount",
+              "refund_reason",
+              "refund_status",
+              "refund_type"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "refund_id",
+              "order_id",
+              "refund_time",
+              "refund_amount",
+              "refund_reason",
+              "refund_status",
+              "refund_type"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ods?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ods_refund_info"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

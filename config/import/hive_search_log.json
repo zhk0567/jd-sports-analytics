@@ -1,0 +1,89 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/search_log.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "log_id",
+              "user_id",
+              "search_time",
+              "keyword",
+              "scene",
+              "result_count",
+              "click_count",
+              "duration_sec",
+              "device",
+              "session_id"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_search_log",
+            "fileName": "search_log.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "log_id",
+                "type": "string"
+              },
+              {
+                "name": "user_id",
+                "type": "string"
+              },
+              {
+                "name": "search_time",
+                "type": "string"
+              },
+              {
+                "name": "keyword",
+                "type": "string"
+              },
+              {
+                "name": "scene",
+                "type": "string"
+              },
+              {
+                "name": "result_count",
+                "type": "string"
+              },
+              {
+                "name": "click_count",
+                "type": "string"
+              },
+              {
+                "name": "duration_sec",
+                "type": "string"
+              },
+              {
+                "name": "device",
+                "type": "string"
+              },
+              {
+                "name": "session_id",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

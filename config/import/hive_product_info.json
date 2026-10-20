@@ -1,0 +1,124 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/product_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "product_id",
+              "product_name",
+              "category_id",
+              "brand_id",
+              "shop_id",
+              "price",
+              "original_price",
+              "stock_qty",
+              "sales_qty",
+              "size",
+              "color",
+              "material",
+              "target_group",
+              "season",
+              "listing_date",
+              "status",
+              "image_url"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_product_info",
+            "fileName": "product_info.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "product_id",
+                "type": "string"
+              },
+              {
+                "name": "product_name",
+                "type": "string"
+              },
+              {
+                "name": "category_id",
+                "type": "string"
+              },
+              {
+                "name": "brand_id",
+                "type": "string"
+              },
+              {
+                "name": "shop_id",
+                "type": "string"
+              },
+              {
+                "name": "price",
+                "type": "string"
+              },
+              {
+                "name": "original_price",
+                "type": "string"
+              },
+              {
+                "name": "stock_qty",
+                "type": "string"
+              },
+              {
+                "name": "sales_qty",
+                "type": "string"
+              },
+              {
+                "name": "size",
+                "type": "string"
+              },
+              {
+                "name": "color",
+                "type": "string"
+              },
+              {
+                "name": "material",
+                "type": "string"
+              },
+              {
+                "name": "target_group",
+                "type": "string"
+              },
+              {
+                "name": "season",
+                "type": "string"
+              },
+              {
+                "name": "listing_date",
+                "type": "string"
+              },
+              {
+                "name": "status",
+                "type": "string"
+              },
+              {
+                "name": "image_url",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

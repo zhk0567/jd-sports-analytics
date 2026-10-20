@@ -1,0 +1,197 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "check": "ODS tables",
+      "passed": true,
+      "detail": "13 tables, rows=24935"
+    },
+    {
+      "check": "DIM tables",
+      "passed": true,
+      "detail": "6 tables, rows=1343"
+    },
+    {
+      "check": "DWD tables",
+      "passed": true,
+      "detail": "10 tables, rows=37497"
+    },
+    {
+      "check": "DWS tables",
+      "passed": true,
+      "detail": "18 tables, rows=64527"
+    },
+    {
+      "check": "ADS tables",
+      "passed": true,
+      "detail": "16 tables, rows=492"
+    },
+    {
+      "check": "30 KPIs",
+      "passed": true,
+      "detail": "30 rows"
+    },
+    {
+      "check": "GMV reconciliation",
+      "passed": true,
+      "detail": "kpi=2135906.30, ads=2135906.30"
+    },
+    {
+      "check": "foreign keys",
+      "passed": true,
+      "detail": "{'order_user_missing': 0, 'detail_order_missing': 0, 'detail_product_missing': 0}"
+    },
+    {
+      "check": "cross validation",
+      "passed": true,
+      "detail": "4 checks"
+    },
+    {
+      "check": "SQL DDL",
+      "passed": true,
+      "detail": "13 files"
+    },
+    {
+      "check": "DataX jobs",
+      "passed": true,
+      "detail": "import=26, export=16"
+    },
+    {
+      "check": "20 API routes",
+      "passed": true,
+      "detail": "20 unique paths / 21 rules"
+    },
+    {
+      "check": "API smoke",
+      "passed": true,
+      "detail": "20 endpoints"
+    },
+    {
+      "check": "12 dashboard charts",
+      "passed": true,
+      "detail": "charts/lists=12"
+    },
+    {
+      "check": "dashboard assets",
+      "passed": true,
+      "detail": "echarts + china map"
+    },
+    {
+      "check": "documents",
+      "passed": true,
+      "detail": "25 markdown files"
+    },
+    {
+      "check": "dashboard screenshot",
+      "passed": true,
+      "detail": "841110 bytes"
+    },
+    {
+      "check": "10-slide PPT",
+      "passed": true,
+      "detail": "10 slides"
+    }
+  ],
+  "api": [
+    {
+      "endpoint": "/api/t2/gmv",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/sales_trend?days=90",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/region_sales",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/city_sales?top=30",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/product_rank?top=20",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/brand_rank",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/category_proportion",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/core_kpi",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/kpi_trend?kpi=gmv&days=30",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/inventory_alarm",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/user_funnel",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/user_retention",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/user_rfm",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/user_churn?top=100",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/user_list?page=1&size=10",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/promo_activity",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/sales_forecast",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/sales_forecast_compare",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/dashboard_overview",
+      "status": 200,
+      "code": 0
+    },
+    {
+      "endpoint": "/api/t2/dashboard_refresh",
+      "status": 200,
+      "code": 0
+    }
+  ]
+}

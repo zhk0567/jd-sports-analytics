@@ -1,0 +1,36 @@
+{
+  "group_no": 2,
+  "group_name": "运动",
+  "seed": 2,
+  "period": [
+    "2025-05-16",
+    "2025-11-11"
+  ],
+  "days": 180,
+  "rows": {
+    "user_info": 800,
+    "category": 40,
+    "product_info": 250,
+    "brand_info": 30,
+    "shop_info": 15,
+    "order_info": 2000,
+    "order_detail": 5000,
+    "payment_info": 2000,
+    "refund_info": 300,
+    "logistics_info": 2000,
+    "review_info": 1500,
+    "cart_info": 6000,
+    "search_log": 5000
+  },
+  "total_rows": 24935,
+  "male_share_pct": 65.38,
+  "gmv": 2139684.21,
+  "aov": 1112.1,
+  "paid_orders": 1924,
+  "top5_brand_share_pct": 50.66,
+  "promo_avg_daily_gmv": 62248.15,
+  "normal_avg_daily_gmv": 9544.76,
+  "promo_uplift": 6.52,
+  "refund_rows": 300,
+  "approved_refund_rows": 184
+}

@@ -1,0 +1,84 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/review_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "review_id",
+              "order_id",
+              "product_id",
+              "user_id",
+              "review_time",
+              "rating",
+              "review_content",
+              "is_anonymous",
+              "images_count"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_review_info",
+            "fileName": "review_info.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "review_id",
+                "type": "string"
+              },
+              {
+                "name": "order_id",
+                "type": "string"
+              },
+              {
+                "name": "product_id",
+                "type": "string"
+              },
+              {
+                "name": "user_id",
+                "type": "string"
+              },
+              {
+                "name": "review_time",
+                "type": "string"
+              },
+              {
+                "name": "rating",
+                "type": "string"
+              },
+              {
+                "name": "review_content",
+                "type": "string"
+              },
+              {
+                "name": "is_anonymous",
+                "type": "string"
+              },
+              {
+                "name": "images_count",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

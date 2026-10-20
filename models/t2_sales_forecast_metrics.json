@@ -1,0 +1,25 @@
+{
+  "model": "LinearRegression",
+  "metrics": {
+    "LinearRegression": {
+      "MAE": 5967.68,
+      "RMSE": 9886.8,
+      "R2": 0.7782,
+      "MAPE": 40.25
+    },
+    "RandomForest": {
+      "MAE": 7920.24,
+      "RMSE": 15597.88,
+      "R2": 0.4479,
+      "MAPE": 41.21
+    }
+  },
+  "chosen": {
+    "MAE": 5967.68,
+    "RMSE": 9886.8,
+    "R2": 0.7782,
+    "MAPE": 40.25
+  },
+  "forecast_rows": 14,
+  "forecast_total": 119045.02
+}

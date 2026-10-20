@@ -1,0 +1,74 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/refund_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "refund_id",
+              "order_id",
+              "refund_time",
+              "refund_amount",
+              "refund_reason",
+              "refund_status",
+              "refund_type"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_refund_info",
+            "fileName": "refund_info.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "refund_id",
+                "type": "string"
+              },
+              {
+                "name": "order_id",
+                "type": "string"
+              },
+              {
+                "name": "refund_time",
+                "type": "string"
+              },
+              {
+                "name": "refund_amount",
+                "type": "string"
+              },
+              {
+                "name": "refund_reason",
+                "type": "string"
+              },
+              {
+                "name": "refund_status",
+                "type": "string"
+              },
+              {
+                "name": "refund_type",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

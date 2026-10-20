@@ -22,3 +22,15 @@ data/processed/*
 .env
 .streamlit/secrets.toml
 web/tsconfig.tsbuildinfo
+.codex-build-t2/
+data/*_run.txt
+data/generate_meta.txt
+data/t2_ecommerce.db
+data/t2_ecommerce.db-wal
+data/t2_ecommerce.db-shm
+models/*.joblib
+models/*.csv
+doc/答辩PPT_python_draft.pptx
+scripts/t2_debug.js
+scripts/t2_screenshot.js
+scripts/t2_make_ppt.py

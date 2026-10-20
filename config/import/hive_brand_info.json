@@ -1,0 +1,69 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/brand_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "brand_id",
+              "brand_name",
+              "brand_country",
+              "brand_level",
+              "main_category",
+              "establish_year"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_brand_info",
+            "fileName": "brand_info.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "brand_id",
+                "type": "string"
+              },
+              {
+                "name": "brand_name",
+                "type": "string"
+              },
+              {
+                "name": "brand_country",
+                "type": "string"
+              },
+              {
+                "name": "brand_level",
+                "type": "string"
+              },
+              {
+                "name": "main_category",
+                "type": "string"
+              },
+              {
+                "name": "establish_year",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 2
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hdfsreader",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "orc",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ads_kpi_trend",
+            "column": [
+              "*"
+            ],
+            "encoding": "UTF-8"
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "stat_date",
+              "gmv",
+              "orders",
+              "uv",
+              "aov",
+              "pay_rate",
+              "refund_rate",
+              "conversion_rate"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ads?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ads_kpi_trend"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

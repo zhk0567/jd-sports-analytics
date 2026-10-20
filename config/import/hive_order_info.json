@@ -1,0 +1,109 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/order_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "order_id",
+              "user_id",
+              "order_time",
+              "order_status",
+              "total_amount",
+              "discount_amount",
+              "shipping_fee",
+              "pay_amount",
+              "province",
+              "city",
+              "channel",
+              "promo_id",
+              "coupon_amount",
+              "order_date"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_order_info",
+            "fileName": "order_info.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "order_id",
+                "type": "string"
+              },
+              {
+                "name": "user_id",
+                "type": "string"
+              },
+              {
+                "name": "order_time",
+                "type": "string"
+              },
+              {
+                "name": "order_status",
+                "type": "string"
+              },
+              {
+                "name": "total_amount",
+                "type": "string"
+              },
+              {
+                "name": "discount_amount",
+                "type": "string"
+              },
+              {
+                "name": "shipping_fee",
+                "type": "string"
+              },
+              {
+                "name": "pay_amount",
+                "type": "string"
+              },
+              {
+                "name": "province",
+                "type": "string"
+              },
+              {
+                "name": "city",
+                "type": "string"
+              },
+              {
+                "name": "channel",
+                "type": "string"
+              },
+              {
+                "name": "promo_id",
+                "type": "string"
+              },
+              {
+                "name": "coupon_amount",
+                "type": "string"
+              },
+              {
+                "name": "order_date",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

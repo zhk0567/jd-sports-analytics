@@ -1,0 +1,74 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/payment_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "payment_id",
+              "order_id",
+              "pay_time",
+              "pay_amount",
+              "pay_method",
+              "pay_status",
+              "transaction_no"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_payment_info",
+            "fileName": "payment_info.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "payment_id",
+                "type": "string"
+              },
+              {
+                "name": "order_id",
+                "type": "string"
+              },
+              {
+                "name": "pay_time",
+                "type": "string"
+              },
+              {
+                "name": "pay_amount",
+                "type": "string"
+              },
+              {
+                "name": "pay_method",
+                "type": "string"
+              },
+              {
+                "name": "pay_status",
+                "type": "string"
+              },
+              {
+                "name": "transaction_no",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

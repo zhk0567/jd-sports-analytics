@@ -1,0 +1,95 @@
+{
+  "sales_forecast": {
+    "model": "LinearRegression",
+    "metrics": {
+      "LinearRegression": {
+        "MAE": 5967.68,
+        "RMSE": 9886.8,
+        "R2": 0.7782,
+        "MAPE": 40.25
+      },
+      "RandomForest": {
+        "MAE": 7920.24,
+        "RMSE": 15597.88,
+        "R2": 0.4479,
+        "MAPE": 41.21
+      }
+    },
+    "chosen": {
+      "MAE": 5967.68,
+      "RMSE": 9886.8,
+      "R2": 0.7782,
+      "MAPE": 40.25
+    },
+    "forecast_rows": 14,
+    "forecast_total": 119045.02
+  },
+  "churn": {
+    "accuracy": 0.9874,
+    "precision": 1.0,
+    "recall": 0.9764,
+    "f1": 0.988,
+    "confusion_matrix": [
+      [
+        111,
+        0
+      ],
+      [
+        3,
+        124
+      ]
+    ],
+    "churn_rate": 53.16,
+    "samples": 792
+  },
+  "rfm": {
+    "segments": [
+      {
+        "segment": "高价值",
+        "user_count": 167,
+        "avg_r": 4.538922155688622,
+        "avg_f": 4.946107784431137,
+        "avg_m": 4.425149700598802,
+        "avg_monetary": 4735.73874251497,
+        "user_share": 21.085858585858585
+      },
+      {
+        "segment": "潜力",
+        "user_count": 150,
+        "avg_r": 3.6133333333333333,
+        "avg_f": 4.233333333333333,
+        "avg_m": 4.006666666666667,
+        "avg_monetary": 3835.550533333333,
+        "user_share": 18.939393939393938
+      },
+      {
+        "segment": "稳定",
+        "user_count": 109,
+        "avg_r": 3.3944954128440368,
+        "avg_f": 3.256880733944954,
+        "avg_m": 2.9174311926605503,
+        "avg_monetary": 2421.2325688073392,
+        "user_share": 13.762626262626263
+      },
+      {
+        "segment": "流失预警",
+        "user_count": 160,
+        "avg_r": 2.4375,
+        "avg_f": 2.375,
+        "avg_m": 2.5125,
+        "avg_monetary": 1902.7944375,
+        "user_share": 20.2020202020202
+      },
+      {
+        "segment": "流失",
+        "user_count": 206,
+        "avg_r": 1.5,
+        "avg_f": 1.4563106796116505,
+        "avg_m": 1.5436893203883495,
+        "avg_monetary": 977.3975242718445,
+        "user_share": 26.01010101010101
+      }
+    ]
+  },
+  "trained_at": "2026-10-20T15:47:57"
+}

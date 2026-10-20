@@ -1,0 +1,50 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 2
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hdfsreader",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "orc",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ads_gmv_daily",
+            "column": [
+              "*"
+            ],
+            "encoding": "UTF-8"
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "stat_date",
+              "gmv",
+              "orders",
+              "paid_orders",
+              "pay_rate",
+              "aov",
+              "promo_name"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ads?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ads_gmv_daily"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

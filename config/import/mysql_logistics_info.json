@@ -1,0 +1,64 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/logistics_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "logistics_id",
+              "order_id",
+              "ship_time",
+              "deliver_time",
+              "sign_time",
+              "logistics_company",
+              "tracking_no",
+              "logistics_status",
+              "province",
+              "city"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "logistics_id",
+              "order_id",
+              "ship_time",
+              "deliver_time",
+              "sign_time",
+              "logistics_company",
+              "tracking_no",
+              "logistics_status",
+              "province",
+              "city"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ods?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ods_logistics_info"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

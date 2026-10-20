@@ -1,0 +1,58 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/payment_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "payment_id",
+              "order_id",
+              "pay_time",
+              "pay_amount",
+              "pay_method",
+              "pay_status",
+              "transaction_no"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "payment_id",
+              "order_id",
+              "pay_time",
+              "pay_amount",
+              "pay_method",
+              "pay_status",
+              "transaction_no"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ods?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ods_payment_info"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

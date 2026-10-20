@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>t2 运动电商经营分析大屏</title>
+  <script src="/static/echarts.min.js"></script>
+  <style>
+    :root{
+      --bg:#060b14; --panel:#0b1424; --panel2:#0e1b30; --line:#183554;
+      --ink:#eaf6ff; --muted:#7e9ab8; --cyan:#38e1ff; --lime:#9dfb6b;
+      --orange:#ffb45c; --violet:#a98bff; --pink:#ff6fa5; --red:#ff6b6b;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:
+      radial-gradient(circle at 18% 0%,rgba(56,225,255,.12),transparent 34%),
+      radial-gradient(circle at 82% 8%,rgba(169,139,255,.12),transparent 30%),
+      linear-gradient(180deg,#050a12 0%,#060d18 55%,#04080f 100%);
+      color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;overflow:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;
+      background-image:linear-gradient(rgba(56,225,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(56,225,255,.06) 1px,transparent 1px);
+      background-size:48px 48px;mask-image:radial-gradient(circle at 50% 30%,#000 10%,transparent 75%)}
+    .shell{position:relative;height:100vh;min-width:1500px;padding:18px 22px 16px;display:flex;flex-direction:column;gap:12px}
+    header{display:flex;align-items:center;justify-content:space-between;height:62px;flex:0 0 auto}
+    .brand{display:flex;align-items:center;gap:16px}
+    .mark{width:44px;height:44px;border:1px solid rgba(56,225,255,.55);border-radius:12px;display:grid;place-items:center;
+      background:linear-gradient(145deg,rgba(56,225,255,.18),rgba(169,139,255,.08));box-shadow:0 0 24px rgba(56,225,255,.18)}
+    .mark span{font:700 18px/1 "Segoe UI";color:var(--cyan)}
+    h1{margin:0;font-size:24px;letter-spacing:.08em;font-weight:700}
+    h1 em{font-style:normal;color:var(--cyan)}
+    .sub{margin-top:4px;font-size:12px;color:var(--muted);letter-spacing:.18em}
+    .head-right{display:flex;align-items:center;gap:18px;font-size:12px;color:var(--muted)}
+    .pill{border:1px solid var(--line);background:rgba(11,20,36,.7);padding:7px 12px;border-radius:999px}
+    .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--lime);margin-right:6px;box-shadow:0 0 10px var(--lime)}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;flex:0 0 auto}
+    .kpi{position:relative;overflow:hidden;padding:14px 18px;border:1px solid var(--line);border-radius:14px;
+      background:linear-gradient(135deg,rgba(14,27,48,.96),rgba(7,14,25,.9));box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+    .kpi:after{content:"";position:absolute;right:-30px;top:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(56,225,255,.16),transparent 68%)}
+    .kpi-label{font-size:12px;color:var(--muted);letter-spacing:.12em}
+    .kpi-value{font:700 31px/1.15 "Segoe UI",sans-serif;margin:7px 0 4px;letter-spacing:.01em;font-variant-numeric:tabular-nums}
+    .kpi-foot{font-size:11px;color:var(--muted)}
+    .kpi-foot b{color:var(--lime);font-weight:600}
+    .kpi:nth-child(2) .kpi-value{color:var(--cyan)}
+    .kpi:nth-child(3) .kpi-value{color:var(--lime)}
+    .kpi:nth-child(4) .kpi-value{color:var(--orange)}
+    .grid{flex:1 1 auto;display:grid;grid-template-columns:1.02fr 1.32fr 1.02fr;grid-template-rows:minmax(0,1.08fr) minmax(0,.92fr) minmax(0,.84fr) minmax(0,.86fr);gap:12px;min-height:0;overflow:hidden}
+    .panel{position:relative;border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,rgba(12,23,40,.96),rgba(6,13,24,.94));
+      padding:10px 12px 6px;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+    .panel:before{content:"";position:absolute;left:14px;right:14px;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(56,225,255,.65),transparent)}
+    .panel-title{display:flex;align-items:center;justify-content:space-between;font-size:13px;letter-spacing:.08em;color:#cfe8ff}
+    .panel-title span{color:var(--muted);font-size:10px;letter-spacing:.06em}
+    .chart{width:100%;flex:1 1 0;height:auto;min-height:0}
+    .list{flex:1 1 0;height:auto;min-height:0;overflow:hidden;position:relative;margin-top:4px}
+    .list-inner{animation:scrollUp 34s linear infinite}
+    .row{display:grid;align-items:center;gap:8px;padding:7px 4px;border-bottom:1px solid rgba(24,53,84,.55);font-size:11px}
+    .row:hover{background:rgba(56,225,255,.06)}
+    .row .rank{color:var(--cyan);font-weight:700}
+    .row .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#cfe8ff}
+    .row .num{text-align:right;color:var(--orange);font-variant-numeric:tabular-nums}
+    .row .warn{color:var(--red)}
+    @keyframes scrollUp{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+    .status{position:fixed;right:24px;bottom:12px;font-size:10px;color:var(--muted);letter-spacing:.08em}
+    .error{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);padding:18px 24px;border:1px solid var(--red);
+      border-radius:12px;background:#190c14;color:#ffd5d5;font-size:13px;display:none;z-index:9}
+    @media (max-width:1600px){.shell{min-width:0;padding:12px}.kpi-value{font-size:24px}h1{font-size:19px}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="brand">
+      <div class="mark"><span>t2</span></div>
+      <div>
+        <h1>运动电商 <em>经营分析平台</em></h1>
+        <div class="sub">GROUP 02 · SPORTS · ODS → DIM → DWD → DWS → ADS</div>
+      </div>
+    </div>
+    <div class="head-right">
+      <div class="pill"><span class="dot"></span>数据链路 ONLINE</div>
+      <div class="pill" id="clock">--:--:--</div>
+      <div class="pill">30s 自动刷新</div>
+    </div>
+  </header>
+
+  <section class="kpis">
+    <div class="kpi"><div class="kpi-label">累计 GMV</div><div class="kpi-value" id="kpi-gmv">0</div><div class="kpi-foot">支付订单 <b id="kpi-paid">0</b> 单</div></div>
+    <div class="kpi"><div class="kpi-label">订单量</div><div class="kpi-value" id="kpi-orders">0</div><div class="kpi-foot">支付率 <b id="kpi-payrate">0%</b></div></div>
+    <div class="kpi"><div class="kpi-label">活跃 UV</div><div class="kpi-value" id="kpi-uv">0</div><div class="kpi-foot">近30天活跃用户</div></div>
+    <div class="kpi"><div class="kpi-label">客单价</div><div class="kpi-value" id="kpi-aov">0</div><div class="kpi-foot">运动品类 · 中高客单</div></div>
+  </section>
+
+  <section class="grid">
+    <div class="panel"><div class="panel-title">销售趋势与 14 天预测 <span>GMV / 预测虚线</span></div><div class="chart" id="c-trend"></div></div>
+    <div class="panel"><div class="panel-title">全国销售热力 <span>省份 GMV</span></div><div class="chart" id="c-map"></div></div>
+    <div class="panel"><div class="panel-title">用户留存 <span>次日 / 7日 / 30日</span></div><div class="chart" id="c-retention"></div></div>
+
+    <div class="panel"><div class="panel-title">品类 GMV 占比 <span>运动鞋服为主</span></div><div class="chart" id="c-category"></div></div>
+    <div class="panel"><div class="panel-title">用户转化漏斗 <span>搜索触达 → 加购 → 下单 → 支付</span></div><div class="chart" id="c-funnel"></div></div>
+    <div class="panel"><div class="panel-title">RFM 价值分层 <span>5 级用户</span></div><div class="chart" id="c-rfm"></div></div>
+
+    <div class="panel"><div class="panel-title">品牌销量排行 <span>Top 10</span></div><div class="chart" id="c-brand"></div></div>
+    <div class="panel"><div class="panel-title">大促 GMV 对比 <span>618 / 双11 / 日常</span></div><div class="chart" id="c-promo"></div></div>
+    <div class="panel"><div class="panel-title">商品动销率 <span>在售 SKU</span></div><div class="chart" id="c-gauge"></div></div>
+
+    <div class="panel"><div class="panel-title">滞销商品预警 <span>库存 × 周转</span></div><div class="list" id="l-slow"><div class="list-inner"></div></div></div>
+    <div class="panel"><div class="panel-title">高风险流失用户 <span>Top 100</span></div><div class="list" id="l-churn"><div class="list-inner"></div></div></div>
+    <div class="panel"><div class="panel-title">商品销量 Top 10 <span>件数</span></div><div class="list" id="l-product"><div class="list-inner"></div></div></div>
+  </section>
+</div>
+<div class="status" id="status">connecting…</div>
+<div class="error" id="error"></div>
+
+<script>
+const API = "/api/t2";
+const charts = {};
+const fmt = (n, d=0) => Number(n || 0).toLocaleString("zh-CN", {maximumFractionDigits:d, minimumFractionDigits:d});
+const money = n => "¥" + fmt(n, 0);
+
+function init(id){
+  if(!charts[id]) charts[id] = echarts.init(document.getElementById(id), null, {renderer:"canvas"});
+  return charts[id];
+}
+
+function animateNumber(el, target, formatter){
+  const start = Number(el.dataset.value || 0);
+  const end = Number(target || 0);
+  const t0 = performance.now();
+  const dur = 900;
+  function frame(t){
+    const p = Math.min(1, (t - t0) / dur);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const value = start + (end - start) * eased;
+    el.textContent = formatter(value);
+    if(p < 1) requestAnimationFrame(frame); else el.dataset.value = end;
+  }
+  requestAnimationFrame(frame);
+}
+
+function fillList(id, rows, render){
+  const box = document.querySelector("#" + id + " .list-inner");
+  const html = rows.map(render).join("");
+  box.innerHTML = html + html;
+}
+
+async function initMap(){
+  const geo = await fetch("/static/china.json").then(r => r.json());
+  const short = {};
+  geo.features.forEach(f => {
+    const n = f.properties.name || "";
+    short[n.replace(/(省|市|自治区|特别行政区|壮族|回族|维吾尔)/g, "")] = n;
+  });
+  echarts.registerMap("china", geo);
+  charts.__mapGeo = short;
+}
+
+function renderMap(regions){
+  const geo = charts.__mapGeo || {};
+  const data = regions.map(r => ({name: geo[r.province] || r.province, value: r.gmv}));
+  init("c-map").setOption({
+    tooltip:{trigger:"item", formatter:p => `${p.name}<br/>GMV ${money(p.value)}`},
+    visualMap:{min:0,max:Math.max(...data.map(d=>d.value),1),left:10,bottom:8,calculable:false,
+      inRange:{color:["#0b2a44","#0e5a73","#1c9ba8","#50e0c8","#c7ff9e"]},textStyle:{color:"#7e9ab8",fontSize:9}},
+    series:[{type:"map",map:"china",roam:false,zoom:1.12,label:{show:false},itemStyle:{borderColor:"#1b4a66",borderWidth:.8,areaColor:"#0a1d31"},
+      emphasis:{itemStyle:{areaColor:"#38e1ff",shadowBlur:18,shadowColor:"#38e1ff"},label:{show:true,color:"#04111c",fontSize:10}},data}]
+  });
+}
+
+function render(data){
+  const g = data.gmv_total || {};
+  const k = data.kpi || {};
+  animateNumber(document.getElementById("kpi-gmv"), g.total_gmv, money);
+  animateNumber(document.getElementById("kpi-orders"), k.order_count ? k.order_count.metric_value : g.paid_orders, fmt);
+  animateNumber(document.getElementById("kpi-uv"), k.uv ? k.uv.metric_value : 0, fmt);
+  animateNumber(document.getElementById("kpi-aov"), g.aov, money);
+  document.getElementById("kpi-paid").textContent = fmt(g.paid_orders);
+  document.getElementById("kpi-payrate").textContent = fmt(g.pay_rate, 1) + "%";
+  renderMap(data.regions || []);
+
+  const trend = data.trend || [];
+  const forecast = data.forecast || [];
+  const actual = trend.slice(-55);
+  const dates = actual.map(r => r.stat_date.slice(5)).concat(forecast.map(r => r.forecast_date.slice(5)));
+  const actualSeries = actual.map(r => r.gmv).concat(forecast.map(() => null));
+  const fcSeries = actual.map(() => null).concat(forecast.map(r => r.predicted_gmv));
+  const lower = actual.map(() => null).concat(forecast.map(r => r.lower_bound));
+  const upper = actual.map(() => null).concat(forecast.map(r => r.upper_bound));
+  init("c-trend").setOption({
+    tooltip:{trigger:"axis",backgroundColor:"#081526",borderColor:"#1c4c6b",textStyle:{color:"#dff5ff"}},
+    legend:{right:6,top:0,textStyle:{color:"#7e9ab8",fontSize:10},data:["实际GMV","预测GMV"]},
+    grid:{left:42,right:14,top:28,bottom:22},
+    xAxis:{type:"category",data:dates,axisLine:{lineStyle:{color:"#183554"}},axisLabel:{color:"#6e8aa8",fontSize:9,interval:6}},
+    yAxis:{type:"value",splitLine:{lineStyle:{color:"rgba(24,53,84,.45)"}},axisLabel:{color:"#6e8aa8",fontSize:9,formatter:v=>v/1000+"k"}},
+    series:[
+      {name:"实际GMV",type:"line",smooth:true,symbol:"none",data:actualSeries,lineStyle:{width:2,color:"#38e1ff"},
+        areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:"rgba(56,225,255,.28)"},{offset:1,color:"rgba(56,225,255,0)"}])}},
+      {name:"预测GMV",type:"line",smooth:true,symbol:"none",data:fcSeries,lineStyle:{width:2,type:"dashed",color:"#ffb45c"}},
+      {name:"下界",type:"line",data:lower,symbol:"none",lineStyle:{opacity:0},stack:"band",silent:true},
+      {name:"上界",type:"line",data:upper,symbol:"none",lineStyle:{opacity:0},areaStyle:{color:"rgba(255,180,92,.12)"},silent:true}
+    ]
+  });
+
+  const category = (data.category || []).slice(0,7);
+  init("c-category").setOption({
+    tooltip:{trigger:"item",formatter:p=>`${p.name}<br/>${money(p.value)} · ${p.percent}%`},
+    color:["#38e1ff","#9dfb6b","#ffb45c","#a98bff","#ff6fa5","#5eead4","#facc15"],
+    legend:{type:"scroll",orient:"vertical",right:2,top:"middle",textStyle:{color:"#8aa6c4",fontSize:10},itemWidth:8,itemHeight:8},
+    series:[{type:"pie",radius:["46%","72%"],center:["36%","52%"],avoidLabelOverlap:true,
+      label:{show:false},itemStyle:{borderColor:"#081321",borderWidth:2},data:category.map(r=>({name:r.category_name,value:r.gmv}))}]
+  });
+
+  const brands = (data.brands || []).slice().reverse();
+  init("c-brand").setOption({
+    tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},
+    grid:{left:58,right:28,top:2,bottom:2},
+    xAxis:{type:"value",splitLine:{lineStyle:{color:"rgba(24,53,84,.4)"}},axisLabel:{color:"#6e8aa8",fontSize:9}},
+    yAxis:{type:"category",data:brands.map(r=>r.brand_name),axisLine:{show:false},axisLabel:{color:"#a9c4dc",fontSize:9,interval:0}},
+    series:[{type:"bar",data:brands.map(r=>r.sales_qty),barWidth:6,barCategoryGap:"32%",itemStyle:{borderRadius:3,
+      color:new echarts.graphic.LinearGradient(1,0,0,0,[{offset:0,color:"#9dfb6b"},{offset:1,color:"#1e7f8c"}])}}]
+  });
+
+  const funnel = data.funnel || [];
+  init("c-funnel").setOption({
+    tooltip:{trigger:"item",formatter:p=>`${p.name}<br/>${fmt(p.value)} 人 · ${p.data.rate}%`},
+    series:[{type:"funnel",left:"10%",right:"10%",top:12,bottom:8,minSize:"26%",maxSize:"92%",sort:"none",gap:4,
+      label:{show:true,position:"inside",color:"#04111c",fontSize:10,formatter:p=>`${p.name} ${fmt(p.value)}`},
+      itemStyle:{borderColor:"#081321",borderWidth:2},
+      data:funnel.map((r,i)=>({name:r.stage_name,value:r.user_count,rate:r.overall_rate,itemStyle:{color:["#38e1ff","#5eead4","#9dfb6b","#ffb45c"][i]}}))}]
+  });
+
+  const rfm = data.rfm || [];
+  init("c-rfm").setOption({
+    tooltip:{trigger:"item",formatter:p=>`${p.name}<br/>${fmt(p.value)} 人 · ${fmt(p.data.share,1)}%`},
+    color:["#9dfb6b","#38e1ff","#a98bff","#ffb45c","#ff6b6b"],
+    legend:{bottom:0,textStyle:{color:"#8aa6c4",fontSize:10},itemWidth:8,itemHeight:8},
+    series:[{type:"pie",radius:["38%","66%"],center:["50%","45%"],label:{show:false},
+      itemStyle:{borderColor:"#081321",borderWidth:2},data:rfm.map(r=>({name:r.segment,value:r.user_count,share:r.user_share}))}]
+  });
+
+  const retention = data.retention || [];
+  init("c-retention").setOption({
+    tooltip:{},
+    radar:{radius:"62%",center:["50%","54%"],indicator:retention.map(r=>({name:r.period,max:Math.max(20,Math.ceil(Math.max(...retention.map(x=>x.retention_rate||0))*1.4))})),
+      axisName:{color:"#9fbcd6",fontSize:10},splitLine:{lineStyle:{color:"rgba(56,225,255,.18)"}},splitArea:{areaStyle:{color:["rgba(56,225,255,.03)","rgba(56,225,255,.07)"]}},
+      axisLine:{lineStyle:{color:"rgba(56,225,255,.2)"}}},
+    series:[{type:"radar",data:[{value:retention.map(r=>r.retention_rate||0),name:"留存率",
+      areaStyle:{color:"rgba(169,139,255,.25)"},lineStyle:{color:"#a98bff",width:2},itemStyle:{color:"#a98bff"}}]}]
+  });
+
+  const promo = data.promo || [];
+  init("c-promo").setOption({
+    tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},
+    legend:{top:0,textStyle:{color:"#8aa6c4",fontSize:10},itemWidth:8,itemHeight:8},
+    grid:{left:44,right:16,top:28,bottom:24},
+    xAxis:{type:"category",data:promo.map(r=>r.promo_id),axisLabel:{color:"#8aa6c4",fontSize:10},axisLine:{lineStyle:{color:"#183554"}}},
+    yAxis:[{type:"value",name:"GMV",nameTextStyle:{color:"#6e8aa8",fontSize:9},splitLine:{lineStyle:{color:"rgba(24,53,84,.4)"}},axisLabel:{color:"#6e8aa8",fontSize:9,formatter:v=>v/1000+"k"}},
+           {type:"value",name:"单量",nameTextStyle:{color:"#6e8aa8",fontSize:9},splitLine:{show:false},axisLabel:{color:"#6e8aa8",fontSize:9}}],
+    series:[
+      {name:"GMV",type:"bar",barWidth:22,data:promo.map(r=>r.gmv),itemStyle:{borderRadius:4,color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:"#ffb45c"},{offset:1,color:"#b85b2a"}])}},
+      {name:"订单量",type:"line",yAxisIndex:1,smooth:true,data:promo.map(r=>r.order_count),lineStyle:{color:"#38e1ff",width:2},itemStyle:{color:"#38e1ff"}}
+    ]
+  });
+
+  const sell = k.sell_through_rate ? k.sell_through_rate.metric_value : 0;
+  init("c-gauge").setOption({
+    series:[{type:"gauge",startAngle:210,endAngle:-30,min:0,max:100,radius:"88%",center:["50%","62%"],
+      progress:{show:true,width:10,itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:"#38e1ff"},{offset:1,color:"#9dfb6b"}])}},
+      axisLine:{lineStyle:{width:10,color:[[1,"rgba(24,53,84,.8)"]]}},axisTick:{show:false},splitLine:{show:false},axisLabel:{show:false},
+      pointer:{show:false},detail:{valueAnimation:true,offsetCenter:[0,"8%"],fontSize:26,fontWeight:700,color:"#9dfb6b",formatter:"{value}%"},
+      title:{offsetCenter:[0,"44%"],color:"#7e9ab8",fontSize:10},data:[{value:Number(sell).toFixed(1),name:"动销率"}]}]
+  });
+
+  const slow = data.inventory || [];
+  fillList("l-slow", slow, (r,i)=>`<div class="row" style="grid-template-columns:22px 1fr 62px"><span class="rank">${String(i+1).padStart(2,"0")}</span><span class="name">${r.product_name}</span><span class="num warn">${r.stock_qty} 件</span></div>`);
+  const churn = data.churn || [];
+  fillList("l-churn", churn, (r,i)=>`<div class="row" style="grid-template-columns:22px 1fr 52px"><span class="rank">${String(i+1).padStart(2,"0")}</span><span class="name">${r.user_id} · ${r.member_level}级</span><span class="num">${(r.churn_prob*100).toFixed(0)}%</span></div>`);
+  const products = data.products || [];
+  fillList("l-product", products, (r,i)=>`<div class="row" style="grid-template-columns:22px 1fr 58px"><span class="rank">${String(i+1).padStart(2,"0")}</span><span class="name">${r.product_name}</span><span class="num">${fmt(r.sales_qty)} 件</span></div>`);
+  requestAnimationFrame(() => Object.values(charts).forEach(c => c && c.resize && c.resize()));
+}
+
+async function load(){
+  const status = document.getElementById("status");
+  try{
+    const res = await fetch(API + "/dashboard_overview", {cache:"no-store"});
+    const json = await res.json();
+    if(json.code !== 0) throw new Error(json.msg);
+    render(json.data);
+    status.textContent = "last sync " + new Date().toLocaleTimeString("zh-CN") + " · API /api/t2";
+    document.getElementById("error").style.display = "none";
+  }catch(err){
+    const box = document.getElementById("error");
+    box.style.display = "block";
+    box.textContent = "数据加载失败：" + err.message;
+    status.textContent = "offline · retrying";
+  }
+}
+
+function clock(){
+  document.getElementById("clock").textContent = new Date().toLocaleTimeString("zh-CN", {hour12:false});
+}
+
+window.addEventListener("resize", () => Object.values(charts).forEach(c => c && c.resize));
+initMap().then(load);
+clock(); setInterval(clock, 1000);
+setInterval(load, 30000);
+</script>
+</body>
+</html>

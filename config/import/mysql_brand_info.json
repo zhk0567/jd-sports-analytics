@@ -1,0 +1,56 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/brand_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "brand_id",
+              "brand_name",
+              "brand_country",
+              "brand_level",
+              "main_category",
+              "establish_year"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "brand_id",
+              "brand_name",
+              "brand_country",
+              "brand_level",
+              "main_category",
+              "establish_year"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ods?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ods_brand_info"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

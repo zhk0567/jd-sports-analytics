@@ -1,0 +1,58 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/cart_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "cart_id",
+              "user_id",
+              "product_id",
+              "add_time",
+              "quantity",
+              "cart_status",
+              "source_page"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "cart_id",
+              "user_id",
+              "product_id",
+              "add_time",
+              "quantity",
+              "cart_status",
+              "source_page"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ods?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ods_cart_info"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

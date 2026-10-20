@@ -1,0 +1,62 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/review_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "review_id",
+              "order_id",
+              "product_id",
+              "user_id",
+              "review_time",
+              "rating",
+              "review_content",
+              "is_anonymous",
+              "images_count"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "review_id",
+              "order_id",
+              "product_id",
+              "user_id",
+              "review_time",
+              "rating",
+              "review_content",
+              "is_anonymous",
+              "images_count"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ods?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ods_review_info"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

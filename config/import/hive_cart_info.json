@@ -1,0 +1,74 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/cart_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "cart_id",
+              "user_id",
+              "product_id",
+              "add_time",
+              "quantity",
+              "cart_status",
+              "source_page"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_cart_info",
+            "fileName": "cart_info.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "cart_id",
+                "type": "string"
+              },
+              {
+                "name": "user_id",
+                "type": "string"
+              },
+              {
+                "name": "product_id",
+                "type": "string"
+              },
+              {
+                "name": "add_time",
+                "type": "string"
+              },
+              {
+                "name": "quantity",
+                "type": "string"
+              },
+              {
+                "name": "cart_status",
+                "type": "string"
+              },
+              {
+                "name": "source_page",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

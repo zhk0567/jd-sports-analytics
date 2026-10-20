@@ -1,0 +1,48 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 2
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hdfsreader",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "orc",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ads_user_funnel",
+            "column": [
+              "*"
+            ],
+            "encoding": "UTF-8"
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "stage_no",
+              "stage_name",
+              "user_count",
+              "conversion_rate",
+              "overall_rate"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ads?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ads_user_funnel"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

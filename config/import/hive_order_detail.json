@@ -1,0 +1,74 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/order_detail.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "detail_id",
+              "order_id",
+              "product_id",
+              "quantity",
+              "unit_price",
+              "discount_amount",
+              "line_amount"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_order_detail",
+            "fileName": "order_detail.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "detail_id",
+                "type": "string"
+              },
+              {
+                "name": "order_id",
+                "type": "string"
+              },
+              {
+                "name": "product_id",
+                "type": "string"
+              },
+              {
+                "name": "quantity",
+                "type": "string"
+              },
+              {
+                "name": "unit_price",
+                "type": "string"
+              },
+              {
+                "name": "discount_amount",
+                "type": "string"
+              },
+              {
+                "name": "line_amount",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/category.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "category_id",
+              "category_name",
+              "parent_id",
+              "category_level",
+              "category_path",
+              "sort_no"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_category",
+            "fileName": "category.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "category_id",
+                "type": "string"
+              },
+              {
+                "name": "category_name",
+                "type": "string"
+              },
+              {
+                "name": "parent_id",
+                "type": "string"
+              },
+              {
+                "name": "category_level",
+                "type": "string"
+              },
+              {
+                "name": "category_path",
+                "type": "string"
+              },
+              {
+                "name": "sort_no",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

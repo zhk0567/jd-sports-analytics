@@ -1,0 +1,49 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 2
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hdfsreader",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "orc",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ads_product_stock_warn",
+            "column": [
+              "*"
+            ],
+            "encoding": "UTF-8"
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "product_id",
+              "product_name",
+              "stock_qty",
+              "sales_qty_30d",
+              "turnover_days",
+              "warn_level"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ads?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ads_product_stock_warn"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

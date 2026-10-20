@@ -1,0 +1,56 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/category.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "category_id",
+              "category_name",
+              "parent_id",
+              "category_level",
+              "category_path",
+              "sort_no"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "category_id",
+              "category_name",
+              "parent_id",
+              "category_level",
+              "category_path",
+              "sort_no"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ods?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ods_category"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/logistics_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "logistics_id",
+              "order_id",
+              "ship_time",
+              "deliver_time",
+              "sign_time",
+              "logistics_company",
+              "tracking_no",
+              "logistics_status",
+              "province",
+              "city"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "hdfswriter",
+          "parameter": {
+            "defaultFS": "hdfs://localhost:9000",
+            "fileType": "text",
+            "path": "/user/hive/warehouse/t2_ecommerce.db/t2_ods_logistics_info",
+            "fileName": "logistics_info.csv",
+            "writeMode": "append",
+            "fieldDelimiter": ",",
+            "column": [
+              {
+                "name": "logistics_id",
+                "type": "string"
+              },
+              {
+                "name": "order_id",
+                "type": "string"
+              },
+              {
+                "name": "ship_time",
+                "type": "string"
+              },
+              {
+                "name": "deliver_time",
+                "type": "string"
+              },
+              {
+                "name": "sign_time",
+                "type": "string"
+              },
+              {
+                "name": "logistics_company",
+                "type": "string"
+              },
+              {
+                "name": "tracking_no",
+                "type": "string"
+              },
+              {
+                "name": "logistics_status",
+                "type": "string"
+              },
+              {
+                "name": "province",
+                "type": "string"
+              },
+              {
+                "name": "city",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

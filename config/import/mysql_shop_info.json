@@ -1,0 +1,58 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "./data/ods_csv/shop_info.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              "shop_id",
+              "shop_name",
+              "shop_type",
+              "province",
+              "city",
+              "rating",
+              "open_date"
+            ],
+            "fieldDelimiter": ",",
+            "skipHeader": true
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "writeMode": "replace",
+            "username": "root",
+            "password": "root",
+            "column": [
+              "shop_id",
+              "shop_name",
+              "shop_type",
+              "province",
+              "city",
+              "rating",
+              "open_date"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/t2_ecommerce_ods?useUnicode=true&characterEncoding=utf8",
+                "table": [
+                  "t2_ods_shop_info"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
